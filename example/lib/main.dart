@@ -36,12 +36,23 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('Elegant Alert Dialog'),
       ),
-      body: const Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             //Testing purposes
-            ElegantAlertDialog()
+            ElevatedButton(
+              onPressed: () {
+                ElegantAlertDialog(
+                  description: const Text('This is an example'),
+                  title: const Text('Title Example', style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),),
+                  backgroundColor: Theme.of(context).primaryColor,
+                ).show(context);
+              },
+              child: const Text('Hello'),
+            ),
           ],
         ),
       ),
