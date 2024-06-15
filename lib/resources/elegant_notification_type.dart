@@ -8,9 +8,9 @@ class ElegantNotificationMultiActions extends ElegantNotificationType {
   final String secondaryActionText;
   final String customActionText;
 
-  final Function() onPrimaryButtonPressed;
-  final Function() onSecondaryButtonPressed;
-  final Function() onCustomButtonPressed;
+  final Function()? onPrimaryButtonPressed;
+  final Function()? onSecondaryButtonPressed;
+  final Function()? onCustomButtonPressed;
 
   final Color primaryButtonColor;
   final Color secondaryButtonColor;
@@ -20,9 +20,9 @@ class ElegantNotificationMultiActions extends ElegantNotificationType {
     required this.primaryActionText,
     required this.secondaryActionText,
     required this.customActionText,
-    required this.onPrimaryButtonPressed,
-    required this.onSecondaryButtonPressed,
-    required this.onCustomButtonPressed,
+    this.onPrimaryButtonPressed,
+    this.onSecondaryButtonPressed,
+    this.onCustomButtonPressed,
     required this.primaryButtonColor,
     required this.secondaryButtonColor,
     required this.customButtonColor,

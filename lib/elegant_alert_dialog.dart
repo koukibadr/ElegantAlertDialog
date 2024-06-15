@@ -18,14 +18,14 @@ class ElegantAlertDialog extends StatelessWidget {
     super.key,
     required this.description,
     this.title,
-    this.primaryButtonColor,
-    this.primaryButtonText,
+    this.primaryButtonColor = Colors.blue,
+    this.primaryButtonText = 'Confirm',
     this.onPrimaryButtonPressed,
-    this.secondButtonColor,
-    this.secondButtonText,
+    this.secondButtonColor = Colors.grey,
+    this.secondButtonText = 'Learn more',
     this.onSecondaryButtonPressed,
-    this.customButtonColor,
-    this.customButtonText,
+    this.customButtonColor = Colors.green,
+    this.customButtonText = 'Cancel',
     this.onCustomButtonPressed,
   }) {
     borderColor = successColor;
@@ -38,9 +38,9 @@ class ElegantAlertDialog extends StatelessWidget {
       primaryButtonColor: primaryButtonColor!,
       secondaryButtonColor: secondButtonColor!,
       customButtonColor: customButtonColor!,
-      onPrimaryButtonPressed: onPrimaryButtonPressed!,
-      onSecondaryButtonPressed: onSecondaryButtonPressed!,
-      onCustomButtonPressed: onCustomButtonPressed!,
+      onPrimaryButtonPressed: onPrimaryButtonPressed,
+      onSecondaryButtonPressed: onSecondaryButtonPressed,
+      onCustomButtonPressed: onCustomButtonPressed,
     );
   }
 
@@ -110,23 +110,69 @@ class ElegantAlertDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 250,
       decoration: BoxDecoration(
         color: backgroundColor,
-        borderRadius: BorderRadius.circular(radius),
+        borderRadius: BorderRadius.circular(10),
         border: Border.all(
-          color: borderColor ?? Colors.transparent,
+          width: 1,
+          color: Colors.orange,
         ),
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 50),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            title ?? const SizedBox.shrink(),
-            description,
-          ],
-        ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: Container(
+                  width: 10,
+                  height: 40,
+                  decoration: const BoxDecoration(
+                    color: Colors.orange,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              const Text(
+                'This is serious!',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10,
+              ),
+              child: Column(
+                children: [
+                  Text(
+                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. '),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(onPressed: (){}, child: Text(customButtonText!)),
+                        TextButton(onPressed: (){}, child: Text(secondButtonText!)),
+                        ElevatedButton(onPressed: (){}, child: Text(primaryButtonText!)),
+                      ],
+                    ),
+                  )
+                
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
