@@ -31,7 +31,7 @@ class ElegantAlertDialog extends StatelessWidget {
     borderColor = multiActionColor;
     backgroundColor = Colors.white;
     radius = 5;
-    elegantAlertType = ElegantAlertMultiActions(
+    elegantAlertType = ElegantAlertMultiActionsType(
       primaryActionText: primaryButtonText!,
       secondaryActionText: secondButtonText!,
       customActionText: customButtonText!,
@@ -48,23 +48,23 @@ class ElegantAlertDialog extends StatelessWidget {
     super.key,
     required this.description,
     this.title,
-    this.primaryButtonColor = Colors.blue,
-    this.primaryButtonText = 'Confirm',
-    this.onPrimaryButtonPressed,
-    this.secondButtonColor = Colors.grey,
-    this.secondButtonText = 'Learn more',
-    this.onSecondaryButtonPressed,
+    this.allowButtonColor = Colors.blue,
+    this.allowButtonText = 'Confirm',
+    this.onAllowButtonPressed,
+    this.denyButtonColor = Colors.grey,
+    this.denyButtonText = 'Learn more',
+    this.onDenyButtonPressed,
   }) {
     borderColor = permissionColor;
     backgroundColor = Colors.white;
     radius = 5;
-    elegantAlertType = ElegantAlertPermission(
-      primaryButtonText: primaryButtonText!,
-      secondaryButtonText: secondButtonText!,
-      primaryButtonColor: primaryButtonColor!,
-      secondaryButtonColor: secondButtonColor!,
-      onPrimaryButtonPressed: onPrimaryButtonPressed,
-      onSecondaryButtonPressed: onSecondaryButtonPressed,
+    elegantAlertType = ElegantAlertPermissionType(
+      allowButtonText: allowButtonText!,
+      denyButtonText: denyButtonText!,
+      allowButtonColor: allowButtonColor!,
+      denyButtonColor: denyButtonColor!,
+      onAllowButtonPressed: onAllowButtonPressed,
+      onDenyButtonPressed: onDenyButtonPressed,
     );
   }
 
@@ -82,10 +82,18 @@ class ElegantAlertDialog extends StatelessWidget {
     super.key,
     required this.description,
     this.title,
+    this.confirmButtonColor = Colors.blue,
+    this.confirmButtonText = 'Confirm',
+    this.onConfirmButtonPressed,
   }) {
     borderColor = infoColor;
     backgroundColor = Colors.white;
     radius = 5;
+    elegantAlertType = ElegantAlertInfoType(
+      confirmButtonColor: confirmButtonColor!,
+      confirmButtonPressed: onConfirmButtonPressed,
+      confirmButtonText: confirmButtonText!,
+    );
   }
 
   final Widget? title;
@@ -107,6 +115,21 @@ class ElegantAlertDialog extends StatelessWidget {
   Color? primaryButtonColor;
   Color? secondButtonColor;
   Color? customButtonColor;
+
+  //! permission constructor
+  String? allowButtonText;
+  String? denyButtonText;
+
+  Function()? onAllowButtonPressed;
+  Function()? onDenyButtonPressed;
+
+  Color? allowButtonColor;
+  Color? denyButtonColor;
+
+  //! info constructor
+  String? confirmButtonText;
+  Function()? onConfirmButtonPressed;
+  Color? confirmButtonColor;
 
   late ElegantAlertType? elegantAlertType;
 

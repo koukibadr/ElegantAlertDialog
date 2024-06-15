@@ -1,8 +1,9 @@
+import 'package:elegant_alert_dialog/resources/colors.dart';
 import 'package:elegant_alert_dialog/resources/elegant_notification_type.dart';
 import 'package:flutter/material.dart';
 
 class MultiActionElegantAlert extends StatelessWidget {
-  final ElegantAlertMultiActions elegantNotificationMultiActions;
+  final ElegantAlertMultiActionsType elegantNotificationMultiActions;
 
   const MultiActionElegantAlert(
       {super.key, required this.elegantNotificationMultiActions});
@@ -20,7 +21,7 @@ class MultiActionElegantAlert extends StatelessWidget {
                 width: 10,
                 height: 40,
                 decoration: const BoxDecoration(
-                  color: Colors.orange,
+                  color: multiActionColor,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(10),
                   ),

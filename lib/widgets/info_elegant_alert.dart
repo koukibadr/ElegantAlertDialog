@@ -2,12 +2,12 @@ import 'package:elegant_alert_dialog/resources/colors.dart';
 import 'package:elegant_alert_dialog/resources/elegant_notification_type.dart';
 import 'package:flutter/material.dart';
 
-class PermissonElegantAlert extends StatelessWidget {
-  final ElegantAlertPermissionType elegantAlertPermission;
+class InfoElegantAlert extends StatelessWidget {
+  final ElegantAlertInfoType elegantAlertInfoType;
 
-  const PermissonElegantAlert({
+  const InfoElegantAlert({
     super.key,
-    required this.elegantAlertPermission,
+    required this.elegantAlertInfoType,
   });
 
   @override
@@ -23,7 +23,7 @@ class PermissonElegantAlert extends StatelessWidget {
                 width: 10,
                 height: 40,
                 decoration: const BoxDecoration(
-                  color: permissionColor,
+                  color: infoColor,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(10),
                   ),
@@ -57,11 +57,9 @@ class PermissonElegantAlert extends StatelessWidget {
                     children: [
                       TextButton(
                         onPressed: () {},
-                        child: Text(elegantAlertPermission.denyButtonText),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: Text(elegantAlertPermission.allowButtonText),
+                        child: Text(
+                          elegantAlertInfoType.confirmButtonText,
+                        ),
                       ),
                     ],
                   ),

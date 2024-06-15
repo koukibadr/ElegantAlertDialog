@@ -1,3 +1,4 @@
+import 'package:elegant_alert_dialog/widgets/info_elegant_alert.dart';
 import 'package:elegant_alert_dialog/widgets/multi_action_elegant_alert.dart';
 import 'package:elegant_alert_dialog/widgets/permission_elegant_alert.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,7 @@ sealed class ElegantAlertType {
   Widget build();
 }
 
-class ElegantAlertMultiActions extends ElegantAlertType {
+class ElegantAlertMultiActionsType extends ElegantAlertType {
   ///! add documentation
   final String primaryActionText;
   final String secondaryActionText;
@@ -20,7 +21,7 @@ class ElegantAlertMultiActions extends ElegantAlertType {
   final Color secondaryButtonColor;
   final Color customButtonColor;
 
-  ElegantAlertMultiActions({
+  ElegantAlertMultiActionsType({
     required this.primaryActionText,
     required this.secondaryActionText,
     required this.customActionText,
@@ -41,23 +42,23 @@ class ElegantAlertMultiActions extends ElegantAlertType {
   }
 }
 
-class ElegantAlertPermission extends ElegantAlertType {
-  final String primaryButtonText;
-  final String secondaryButtonText;
+class ElegantAlertPermissionType extends ElegantAlertType {
+  final String allowButtonText;
+  final String denyButtonText;
 
-  final Function()? onPrimaryButtonPressed;
-  final Function()? onSecondaryButtonPressed;
+  final Function()? onAllowButtonPressed;
+  final Function()? onDenyButtonPressed;
 
-  final Color primaryButtonColor;
-  final Color secondaryButtonColor;
+  final Color allowButtonColor;
+  final Color denyButtonColor;
 
-  ElegantAlertPermission({
-    required this.onPrimaryButtonPressed,
-    required this.primaryButtonText,
-    required this.onSecondaryButtonPressed,
-    required this.secondaryButtonText,
-    required this.primaryButtonColor,
-    required this.secondaryButtonColor,
+  ElegantAlertPermissionType({
+    required this.onAllowButtonPressed,
+    required this.allowButtonText,
+    required this.onDenyButtonPressed,
+    required this.denyButtonText,
+    required this.allowButtonColor,
+    required this.denyButtonColor,
   });
 
   @override
@@ -68,7 +69,7 @@ class ElegantAlertPermission extends ElegantAlertType {
   }
 }
 
-class ElegantAlertDelete extends ElegantAlertType {
+class ElegantAlertDeleteType extends ElegantAlertType {
   final String deleteButtonText;
   final String cancelButtonText;
 
@@ -78,7 +79,7 @@ class ElegantAlertDelete extends ElegantAlertType {
   final Color deleteButtonColor;
   final Color cancelButtonColor;
 
-  ElegantAlertDelete({
+  ElegantAlertDeleteType({
     required this.onDeletePressed,
     required this.deleteButtonText,
     this.onCancelPressed,
@@ -94,12 +95,12 @@ class ElegantAlertDelete extends ElegantAlertType {
   }
 }
 
-class ElegantAlertInfo extends ElegantAlertType {
+class ElegantAlertInfoType extends ElegantAlertType {
   final String confirmButtonText;
-  final Function() confirmButtonPressed;
+  final Function()? confirmButtonPressed;
   final Color confirmButtonColor;
 
-  ElegantAlertInfo({
+  ElegantAlertInfoType({
     required this.confirmButtonPressed,
     required this.confirmButtonText,
     required this.confirmButtonColor,
@@ -107,7 +108,6 @@ class ElegantAlertInfo extends ElegantAlertType {
 
   @override
   Widget build() {
-    // TODO: implement build
-    throw UnimplementedError();
+    return InfoElegantAlert(elegantAlertInfoType: this);
   }
 }
