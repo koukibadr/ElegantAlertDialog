@@ -31,7 +31,7 @@ class ElegantAlertDialog extends StatelessWidget {
     borderColor = successColor;
     backgroundColor = Colors.white;
     radius = 5;
-    elegantNotificationType = ElegantNotificationMultiActions(
+    elegantAlertType = ElegantAlertMultiActions(
       primaryActionText: primaryButtonText!,
       secondaryActionText: secondButtonText!,
       customActionText: customButtonText!,
@@ -94,7 +94,7 @@ class ElegantAlertDialog extends StatelessWidget {
   Color? secondButtonColor;
   Color? customButtonColor;
 
-  late ElegantNotificationType? elegantNotificationType;
+  late ElegantAlertType? elegantAlertType;
 
   void show(BuildContext context) {
     showDialog(
@@ -119,7 +119,7 @@ class ElegantAlertDialog extends StatelessWidget {
           color: Colors.orange,
         ),
       ),
-      child: elegantNotificationType?.build(),
+      child: elegantAlertType?.build(),
     );
   }
 }

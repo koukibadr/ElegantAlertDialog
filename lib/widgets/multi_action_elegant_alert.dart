@@ -1,10 +1,10 @@
 import 'package:elegant_alert_dialog/resources/elegant_notification_type.dart';
 import 'package:flutter/material.dart';
 
-class MultiActionElegantNotification extends StatelessWidget {
-  final ElegantNotificationMultiActions elegantNotificationMultiActions;
+class MultiActionElegantAlert extends StatelessWidget {
+  final ElegantAlertMultiActions elegantNotificationMultiActions;
 
-  const MultiActionElegantNotification(
+  const MultiActionElegantAlert(
       {super.key, required this.elegantNotificationMultiActions});
 
   @override

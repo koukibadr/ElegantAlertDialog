@@ -1,11 +1,11 @@
-import 'package:elegant_alert_dialog/widgets/multi_action_elegant_notification.dart';
+import 'package:elegant_alert_dialog/widgets/multi_action_elegant_alert.dart';
 import 'package:flutter/material.dart';
 
-sealed class ElegantNotificationType {
+sealed class ElegantAlertType {
   Widget build();
 }
 
-class ElegantNotificationMultiActions extends ElegantNotificationType {
+class ElegantAlertMultiActions extends ElegantAlertType {
   ///! add documentation
   final String primaryActionText;
   final String secondaryActionText;
@@ -19,7 +19,7 @@ class ElegantNotificationMultiActions extends ElegantNotificationType {
   final Color secondaryButtonColor;
   final Color customButtonColor;
 
-  ElegantNotificationMultiActions({
+  ElegantAlertMultiActions({
     required this.primaryActionText,
     required this.secondaryActionText,
     required this.customActionText,
@@ -34,13 +34,13 @@ class ElegantNotificationMultiActions extends ElegantNotificationType {
 
   @override
   Widget build() {
-    return MultiActionElegantNotification(
+    return MultiActionElegantAlert(
       elegantNotificationMultiActions: this,
     );
   }
 }
 
-class ElegantNotificationPermission extends ElegantNotificationType {
+class ElegantAlertPermission extends ElegantAlertType {
   final String primaryButtonText;
   final String secondaryButtonText;
 
@@ -50,7 +50,7 @@ class ElegantNotificationPermission extends ElegantNotificationType {
   final Color primaryButtonColor;
   final Color secondaryButtonColor;
 
-  ElegantNotificationPermission({
+  ElegantAlertPermission({
     required this.onPrimaryButtonPressed,
     required this.primaryButtonText,
     required this.onSecondaryButtonPressed,
@@ -66,7 +66,7 @@ class ElegantNotificationPermission extends ElegantNotificationType {
   }
 }
 
-class ElegantNotificationDelete extends ElegantNotificationType {
+class ElegantAlertDelete extends ElegantAlertType {
   final String deleteButtonText;
   final String cancelButtonText;
 
@@ -76,7 +76,7 @@ class ElegantNotificationDelete extends ElegantNotificationType {
   final Color deleteButtonColor;
   final Color cancelButtonColor;
 
-  ElegantNotificationDelete({
+  ElegantAlertDelete({
     required this.onDeletePressed,
     required this.deleteButtonText,
     this.onCancelPressed,
@@ -92,12 +92,12 @@ class ElegantNotificationDelete extends ElegantNotificationType {
   }
 }
 
-class ElegantNotificationInfo extends ElegantNotificationType {
+class ElegantAlertInfo extends ElegantAlertType {
   final String confirmButtonText;
   final Function() confirmButtonPressed;
   final Color confirmButtonColor;
 
-  ElegantNotificationInfo({
+  ElegantAlertInfo({
     required this.confirmButtonPressed,
     required this.confirmButtonText,
     required this.confirmButtonColor,
