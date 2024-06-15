@@ -1,6 +1,9 @@
+import 'package:elegant_alert_dialog/widgets/multi_action_elegant_notification.dart';
 import 'package:flutter/material.dart';
 
-sealed class ElegantNotificationType {}
+sealed class ElegantNotificationType {
+  Widget build();
+}
 
 class ElegantNotificationMultiActions extends ElegantNotificationType {
   ///! add documentation
@@ -28,6 +31,13 @@ class ElegantNotificationMultiActions extends ElegantNotificationType {
     required this.customButtonColor,
   });
   List<Widget> actions = [];
+
+  @override
+  Widget build() {
+    return MultiActionElegantNotification(
+      elegantNotificationMultiActions: this,
+    );
+  }
 }
 
 class ElegantNotificationPermission extends ElegantNotificationType {
@@ -48,6 +58,12 @@ class ElegantNotificationPermission extends ElegantNotificationType {
     required this.primaryButtonColor,
     required this.secondaryButtonColor,
   });
+
+  @override
+  Widget build() {
+    // TODO: implement build
+    throw UnimplementedError();
+  }
 }
 
 class ElegantNotificationDelete extends ElegantNotificationType {
@@ -68,6 +84,12 @@ class ElegantNotificationDelete extends ElegantNotificationType {
     required this.deleteButtonColor,
     required this.cancelButtonColor,
   });
+
+  @override
+  Widget build() {
+    // TODO: implement build
+    throw UnimplementedError();
+  }
 }
 
 class ElegantNotificationInfo extends ElegantNotificationType {
@@ -80,4 +102,10 @@ class ElegantNotificationInfo extends ElegantNotificationType {
     required this.confirmButtonText,
     required this.confirmButtonColor,
   });
+
+  @override
+  Widget build() {
+    // TODO: implement build
+    throw UnimplementedError();
+  }
 }
