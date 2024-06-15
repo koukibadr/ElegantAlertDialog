@@ -1,4 +1,5 @@
 import 'package:elegant_alert_dialog/widgets/multi_action_elegant_alert.dart';
+import 'package:elegant_alert_dialog/widgets/permission_elegant_alert.dart';
 import 'package:flutter/material.dart';
 
 sealed class ElegantAlertType {
@@ -44,8 +45,8 @@ class ElegantAlertPermission extends ElegantAlertType {
   final String primaryButtonText;
   final String secondaryButtonText;
 
-  final Function() onPrimaryButtonPressed;
-  final Function() onSecondaryButtonPressed;
+  final Function()? onPrimaryButtonPressed;
+  final Function()? onSecondaryButtonPressed;
 
   final Color primaryButtonColor;
   final Color secondaryButtonColor;
@@ -61,8 +62,9 @@ class ElegantAlertPermission extends ElegantAlertType {
 
   @override
   Widget build() {
-    // TODO: implement build
-    throw UnimplementedError();
+    return PermissonElegantAlert(
+      elegantAlertPermission: this,
+    );
   }
 }
 

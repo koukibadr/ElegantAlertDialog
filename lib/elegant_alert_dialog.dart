@@ -28,7 +28,7 @@ class ElegantAlertDialog extends StatelessWidget {
     this.customButtonText = 'Cancel',
     this.onCustomButtonPressed,
   }) {
-    borderColor = successColor;
+    borderColor = multiActionColor;
     backgroundColor = Colors.white;
     radius = 5;
     elegantAlertType = ElegantAlertMultiActions(
@@ -48,10 +48,24 @@ class ElegantAlertDialog extends StatelessWidget {
     super.key,
     required this.description,
     this.title,
+    this.primaryButtonColor = Colors.blue,
+    this.primaryButtonText = 'Confirm',
+    this.onPrimaryButtonPressed,
+    this.secondButtonColor = Colors.grey,
+    this.secondButtonText = 'Learn more',
+    this.onSecondaryButtonPressed,
   }) {
-    borderColor = successColor;
+    borderColor = permissionColor;
     backgroundColor = Colors.white;
     radius = 5;
+    elegantAlertType = ElegantAlertPermission(
+      primaryButtonText: primaryButtonText!,
+      secondaryButtonText: secondButtonText!,
+      primaryButtonColor: primaryButtonColor!,
+      secondaryButtonColor: secondButtonColor!,
+      onPrimaryButtonPressed: onPrimaryButtonPressed,
+      onSecondaryButtonPressed: onSecondaryButtonPressed,
+    );
   }
 
   ElegantAlertDialog.delete({
@@ -69,7 +83,7 @@ class ElegantAlertDialog extends StatelessWidget {
     required this.description,
     this.title,
   }) {
-    borderColor = inforColor;
+    borderColor = infoColor;
     backgroundColor = Colors.white;
     radius = 5;
   }
@@ -116,7 +130,7 @@ class ElegantAlertDialog extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
           width: 1,
-          color: Colors.orange,
+          color: borderColor!,
         ),
       ),
       child: elegantAlertType?.build(),
