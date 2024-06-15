@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
             //Testing purposes
             ElevatedButton(
               onPressed: () {
-                ElegantAlertDialog.info(
+                ElegantAlertDialog.delete(
                   description: const Text('This is an example'),
                   title: const Text('Title Example', style: TextStyle(
                     fontWeight: FontWeight.bold,

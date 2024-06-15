@@ -1,3 +1,4 @@
+import 'package:elegant_alert_dialog/widgets/delete_elegant_alert.dart';
 import 'package:elegant_alert_dialog/widgets/info_elegant_alert.dart';
 import 'package:elegant_alert_dialog/widgets/multi_action_elegant_alert.dart';
 import 'package:elegant_alert_dialog/widgets/permission_elegant_alert.dart';
@@ -73,7 +74,7 @@ class ElegantAlertDeleteType extends ElegantAlertType {
   final String deleteButtonText;
   final String cancelButtonText;
 
-  final Function() onDeletePressed;
+  final Function()? onDeletePressed;
   final Function()? onCancelPressed;
 
   final Color deleteButtonColor;
@@ -90,8 +91,7 @@ class ElegantAlertDeleteType extends ElegantAlertType {
 
   @override
   Widget build() {
-    // TODO: implement build
-    throw UnimplementedError();
+    return DeleteElegantAlert(elegantAlertDeleteType: this);
   }
 }
 

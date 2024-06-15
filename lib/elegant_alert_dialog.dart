@@ -72,10 +72,24 @@ class ElegantAlertDialog extends StatelessWidget {
     super.key,
     required this.description,
     this.title,
+    this.deleteButtonColor = Colors.blue,
+    this.deleteButtonText = 'Confirm',
+    this.onDeletePressed,
+    this.cancelButtonColor = Colors.grey,
+    this.cancelButtonText = 'Learn more',
+    this.onCancelPressed,
   }) {
     borderColor = errorColor;
     backgroundColor = Colors.white;
     radius = 5;
+    elegantAlertType = ElegantAlertDeleteType(
+      cancelButtonColor: cancelButtonColor!,
+      cancelButtonText: cancelButtonText!,
+      onCancelPressed: onCancelPressed,
+      deleteButtonColor: deleteButtonColor!,
+      deleteButtonText: deleteButtonText!,
+      onDeletePressed: onDeletePressed,
+    );
   }
 
   ElegantAlertDialog.info({
@@ -130,6 +144,16 @@ class ElegantAlertDialog extends StatelessWidget {
   String? confirmButtonText;
   Function()? onConfirmButtonPressed;
   Color? confirmButtonColor;
+
+  //! delete constructor
+  String? deleteButtonText;
+  String? cancelButtonText;
+
+  Function()? onDeletePressed;
+  Function()? onCancelPressed;
+
+  Color? deleteButtonColor;
+  Color? cancelButtonColor;
 
   late ElegantAlertType? elegantAlertType;
 
