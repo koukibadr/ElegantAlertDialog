@@ -1,3 +1,4 @@
+import 'package:elegant_alert_dialog/resources/colors.dart';
 import 'package:elegant_alert_dialog/widgets/delete_elegant_alert.dart';
 import 'package:elegant_alert_dialog/widgets/info_elegant_alert.dart';
 import 'package:elegant_alert_dialog/widgets/multi_action_elegant_alert.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 
 sealed class ElegantAlertType {
   Widget build();
+  Color get primaryColor;
 }
 
 class ElegantAlertMultiActionsType extends ElegantAlertType {
@@ -41,6 +43,9 @@ class ElegantAlertMultiActionsType extends ElegantAlertType {
       elegantNotificationMultiActions: this,
     );
   }
+
+  @override
+  Color get primaryColor => multiActionColor;
 }
 
 class ElegantAlertPermissionType extends ElegantAlertType {
@@ -68,6 +73,9 @@ class ElegantAlertPermissionType extends ElegantAlertType {
       elegantAlertPermission: this,
     );
   }
+
+  @override
+  Color get primaryColor => permissionColor;
 }
 
 class ElegantAlertDeleteType extends ElegantAlertType {
@@ -93,6 +101,9 @@ class ElegantAlertDeleteType extends ElegantAlertType {
   Widget build() {
     return DeleteElegantAlert(elegantAlertDeleteType: this);
   }
+
+  @override
+  Color get primaryColor => errorColor;
 }
 
 class ElegantAlertInfoType extends ElegantAlertType {
@@ -110,4 +121,7 @@ class ElegantAlertInfoType extends ElegantAlertType {
   Widget build() {
     return InfoElegantAlert(elegantAlertInfoType: this);
   }
+
+  @override
+  Color get primaryColor => infoColor;
 }
