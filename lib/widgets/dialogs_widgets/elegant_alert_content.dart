@@ -1,13 +1,12 @@
-import 'package:elegant_alert_dialog/resources/colors.dart';
-import 'package:elegant_alert_dialog/resources/elegant_notification_type.dart';
+import 'package:elegant_alert_dialog/widgets/support_widgets/elegant_notification_type.dart';
 import 'package:flutter/material.dart';
 
-class InfoElegantAlert extends StatelessWidget {
-  final ElegantAlertInfoType elegantAlertInfoType;
+class ElegantAlertContent extends StatelessWidget {
+  final ElegantAlertType elegantAlertType;
 
-  const InfoElegantAlert({
+  const ElegantAlertContent({
     super.key,
-    required this.elegantAlertInfoType,
+    required this.elegantAlertType,
   });
 
   @override
@@ -22,9 +21,9 @@ class InfoElegantAlert extends StatelessWidget {
               child: Container(
                 width: 10,
                 height: 40,
-                decoration: const BoxDecoration(
-                  color: infoColor,
-                  borderRadius: BorderRadius.only(
+                decoration: BoxDecoration(
+                  color: elegantAlertType.primaryColor,
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(10),
                   ),
                 ),
@@ -33,6 +32,7 @@ class InfoElegantAlert extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
+            
             const Text(
               'This is serious!',
               style: TextStyle(
@@ -41,9 +41,9 @@ class InfoElegantAlert extends StatelessWidget {
             ),
           ],
         ),
-        Expanded(
+       const Expanded(
           child: Padding(
-            padding: const EdgeInsets.symmetric(
+            padding:  EdgeInsets.symmetric(
               horizontal: 10,
             ),
             child: Column(
@@ -54,14 +54,7 @@ class InfoElegantAlert extends StatelessWidget {
                 Expanded(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          elegantAlertInfoType.confirmButtonText,
-                        ),
-                      ),
-                    ],
+                    children: [],
                   ),
                 )
               ],
@@ -70,5 +63,26 @@ class InfoElegantAlert extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  List<Widget> listOfActions() {
+    if (elegantAlertType is ElegantAlertMultiActionsType) {
+      var elegantType = elegantAlertType as ElegantAlertMultiActionsType;
+      return [
+        TextButton(
+          onPressed: () {},
+          child: Text(elegantType.customActionText),
+        ),
+        TextButton(
+          onPressed: () {},
+          child: Text(elegantType.secondaryActionText),
+        ),
+        ElevatedButton(
+          onPressed: () {},
+          child: Text(elegantType.primaryActionText),
+        ),
+      ];
+    } else if (elegantAlertType is ElegantAlertPermissionType) {}
+    return [];
   }
 }

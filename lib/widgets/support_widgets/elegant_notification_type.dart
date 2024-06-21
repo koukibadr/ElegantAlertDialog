@@ -1,8 +1,9 @@
 import 'package:elegant_alert_dialog/resources/colors.dart';
-import 'package:elegant_alert_dialog/widgets/delete_elegant_alert.dart';
-import 'package:elegant_alert_dialog/widgets/info_elegant_alert.dart';
-import 'package:elegant_alert_dialog/widgets/multi_action_elegant_alert.dart';
-import 'package:elegant_alert_dialog/widgets/permission_elegant_alert.dart';
+import 'package:elegant_alert_dialog/widgets/dialogs_widgets/delete_elegant_alert.dart';
+import 'package:elegant_alert_dialog/widgets/dialogs_widgets/info_elegant_alert.dart';
+import 'package:elegant_alert_dialog/widgets/dialogs_widgets/multi_action_elegant_alert.dart';
+import 'package:elegant_alert_dialog/widgets/dialogs_widgets/permission_elegant_alert.dart';
+import 'package:elegant_alert_dialog/widgets/support_widgets/elegant_body_widet.dart';
 import 'package:flutter/material.dart';
 
 sealed class ElegantAlertType {
@@ -24,6 +25,8 @@ class ElegantAlertMultiActionsType extends ElegantAlertType {
   final Color secondaryButtonColor;
   final Color customButtonColor;
 
+  final ElegantBody? body;
+
   ElegantAlertMultiActionsType({
     required this.primaryActionText,
     required this.secondaryActionText,
@@ -34,6 +37,7 @@ class ElegantAlertMultiActionsType extends ElegantAlertType {
     required this.primaryButtonColor,
     required this.secondaryButtonColor,
     required this.customButtonColor,
+    this.body
   });
   List<Widget> actions = [];
 
@@ -58,6 +62,8 @@ class ElegantAlertPermissionType extends ElegantAlertType {
   final Color allowButtonColor;
   final Color denyButtonColor;
 
+  final ElegantBody? body;
+
   ElegantAlertPermissionType({
     required this.onAllowButtonPressed,
     required this.allowButtonText,
@@ -65,6 +71,7 @@ class ElegantAlertPermissionType extends ElegantAlertType {
     required this.denyButtonText,
     required this.allowButtonColor,
     required this.denyButtonColor,
+    this.body,
   });
 
   @override
@@ -82,19 +89,22 @@ class ElegantAlertDeleteType extends ElegantAlertType {
   final String deleteButtonText;
   final String cancelButtonText;
 
-  final Function()? onDeletePressed;
-  final Function()? onCancelPressed;
+  final void Function()? onDeletePressed;
+  final void Function()? onCancelPressed;
 
   final Color deleteButtonColor;
   final Color cancelButtonColor;
 
+  final ElegantBody ? body;
+
   ElegantAlertDeleteType({
     required this.onDeletePressed,
     required this.deleteButtonText,
-    this.onCancelPressed,
+    required this.onCancelPressed ,
     required this.cancelButtonText,
     required this.deleteButtonColor,
     required this.cancelButtonColor,
+    this.body
   });
 
   @override
@@ -110,11 +120,13 @@ class ElegantAlertInfoType extends ElegantAlertType {
   final String confirmButtonText;
   final Function()? confirmButtonPressed;
   final Color confirmButtonColor;
+  final ElegantBody ? body;
 
   ElegantAlertInfoType({
     required this.confirmButtonPressed,
     required this.confirmButtonText,
     required this.confirmButtonColor,
+    this.body
   });
 
   @override
