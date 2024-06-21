@@ -37,20 +37,164 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text('Elegant Alert Dialog'),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: GridView.count(
+          crossAxisCount: 2,
+          primary: false,
+          padding: const EdgeInsets.all(20),
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
           children: <Widget>[
-            //Testing purposes
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                maximumSize: const Size(100, 100),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
               onPressed: () {
-                ElegantAlertDialog.delete(
-                  description: const Text('This is an example'),
-                  title: const Text('Title Example', style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),),
+                ElegantAlertDialog.info(
+                  body: ElegantBody(
+                    titleText: const Text(
+                      "Info",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    bodyText: const Text(
+                        "This is to inform you that you are seeing Elegant Alert Dialogs."),
+                  ),
                 ).show(context);
               },
-              child: const Text('Hello'),
+              child: const Text('Info'),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                maximumSize: const Size(100, 100),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
+              onPressed: () {
+                ElegantAlertDialog.caution(
+                  onDeletePressed: () {},
+                  body: ElegantBody(
+                    titleText: const Text(
+                      "Wait!!!",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    bodyText: const Text("your about to delete everything!"),
+                  ),
+                ).show(context);
+              },
+              child: const Text('Caution'),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                maximumSize: const Size(100, 100),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
+              onPressed: () {
+                ElegantAlertDialog.permission().show(context);
+              },
+              child: const Text('Permission'),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                maximumSize: const Size(100, 100),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
+              onPressed: () {
+                ElegantAlertDialog.multiActions(
+                  body: ElegantBody(
+                    titleText: const Text(
+                      "Multi action alert",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    bodyText: const Text("Choose one of the following."),
+                  ),
+                ).show(context);
+              },
+              child: const Text('Multi action'),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                maximumSize: const Size(100, 100),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
+              onPressed: () {
+                ElegantAlertDialog.info(
+                  body: ElegantBody(
+                    titleText: const Text(
+                      "This is a cascading alert! 1",
+                    ),
+                    bodyText: const Text(
+                      "Press confirm to see how deep it goes.",
+                    ),
+                  ),
+                  onConfirmButtonPressed: () {
+                    Navigator.of(context).maybePop().then(
+                      (_) {
+                        ElegantAlertDialog.caution(
+                          body: ElegantBody(
+                            titleText: const Text(
+                              "This is a cascading alert! 2",
+                            ),
+                            bodyText: const Text(
+                              "Yup, if you press confirm it will go deeper.",
+                            ),
+                          ),
+                          onDeletePressed: () {
+                            Navigator.of(context).maybePop().then(
+                              (_) {
+                                ElegantAlertDialog.permission(
+                                  body: ElegantBody(
+                                    titleText: const Text(
+                                      "This is a cascading alert! 3",
+                                    ),
+                                    bodyText: const Text(
+                                      "If you give permission we can go deeper.",
+                                    ),
+                                  ),
+                                  onAllowButtonPressed: () {
+                                    Navigator.of(context).maybePop().then(
+                                      (_) {
+                                        ElegantAlertDialog.multiActions(
+                                          body: ElegantBody(
+                                            titleText: const Text(
+                                              "This is a cascading alert! 4",
+                                            ),
+                                            bodyText: const Text(
+                                              "This should be deep enough for this example.",
+                                            ),
+                                          ),
+                                          onPrimaryButtonPressed: () {},
+                                          onSecondaryButtonPressed: () {},
+                                          onCustomButtonPressed: () {},
+                                        ).show(context);
+                                      },
+                                    );
+                                  },
+                                ).show(context);
+                              },
+                            );
+                          },
+                        ).show(context);
+                      },
+                    );
+                  },
+                ).show(context);
+              },
+              child: const Text('Cascading alerts'),
             ),
           ],
         ),
