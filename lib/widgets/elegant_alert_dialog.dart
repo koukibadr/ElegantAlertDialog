@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:elegant_alert_dialog/resources/colors.dart';
-import 'package:elegant_alert_dialog/widgets/support_widgets/elegant_body_widet.dart';
+import 'package:elegant_alert_dialog/widgets/support_widgets/elegant_body_widget.dart';
 import 'package:elegant_alert_dialog/widgets/support_widgets/elegant_notification_type.dart';
 import 'package:flutter/material.dart';
 
@@ -119,7 +119,7 @@ class ElegantAlertDialog extends StatefulWidget {
   }
 
   final Widget? title;
-  final ElegantBody? body;
+  final ElegantBodyWidget? body;
   late Color backgroundColor;
   late Color? borderColor;
   late double radius;

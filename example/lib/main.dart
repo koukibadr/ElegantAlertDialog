@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               onPressed: () {
                 ElegantAlertDialog.info(
-                  body: ElegantBody(
+                  body: ElegantBodyWidget(
                     titleText: const Text(
                       "Info",
                       style: TextStyle(
@@ -77,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 ElegantAlertDialog.caution(
                   onDeletePressed: () {},
-                  body: ElegantBody(
+                  body: ElegantBodyWidget(
                     titleText: const Text(
                       "Wait!!!",
                       style: TextStyle(
@@ -111,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               onPressed: () {
                 ElegantAlertDialog.multiActions(
-                  body: ElegantBody(
+                  body: ElegantBodyWidget(
                     titleText: const Text(
                       "Multi action alert",
                       style: TextStyle(
@@ -133,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               onPressed: () {
                 ElegantAlertDialog.info(
-                  body: ElegantBody(
+                  body: ElegantBodyWidget(
                     titleText: const Text(
                       "This is a cascading alert! 1",
                     ),
@@ -145,7 +145,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Navigator.of(context).maybePop().then(
                       (_) {
                         ElegantAlertDialog.caution(
-                          body: ElegantBody(
+                          body: ElegantBodyWidget(
                             titleText: const Text(
                               "This is a cascading alert! 2",
                             ),
@@ -157,7 +157,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             Navigator.of(context).maybePop().then(
                               (_) {
                                 ElegantAlertDialog.permission(
-                                  body: ElegantBody(
+                                  body: ElegantBodyWidget(
                                     titleText: const Text(
                                       "This is a cascading alert! 3",
                                     ),
@@ -169,7 +169,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     Navigator.of(context).maybePop().then(
                                       (_) {
                                         ElegantAlertDialog.multiActions(
-                                          body: ElegantBody(
+                                          body: ElegantBodyWidget(
                                             titleText: const Text(
                                               "This is a cascading alert! 4",
                                             ),

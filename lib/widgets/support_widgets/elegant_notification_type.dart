@@ -3,7 +3,7 @@ import 'package:elegant_alert_dialog/widgets/dialogs_widgets/delete_elegant_aler
 import 'package:elegant_alert_dialog/widgets/dialogs_widgets/info_elegant_alert.dart';
 import 'package:elegant_alert_dialog/widgets/dialogs_widgets/multi_action_elegant_alert.dart';
 import 'package:elegant_alert_dialog/widgets/dialogs_widgets/permission_elegant_alert.dart';
-import 'package:elegant_alert_dialog/widgets/support_widgets/elegant_body_widet.dart';
+import 'package:elegant_alert_dialog/widgets/support_widgets/elegant_body_widget.dart';
 import 'package:flutter/material.dart';
 
 sealed class ElegantAlertType {
@@ -25,7 +25,7 @@ class ElegantAlertMultiActionsType extends ElegantAlertType {
   final Color secondaryButtonColor;
   final Color customButtonColor;
 
-  final ElegantBody? body;
+  final ElegantBodyWidget? body;
 
   ElegantAlertMultiActionsType({
     required this.primaryActionText,
@@ -62,7 +62,7 @@ class ElegantAlertPermissionType extends ElegantAlertType {
   final Color allowButtonColor;
   final Color denyButtonColor;
 
-  final ElegantBody? body;
+  final ElegantBodyWidget? body;
 
   ElegantAlertPermissionType({
     required this.onAllowButtonPressed,
@@ -95,7 +95,7 @@ class ElegantAlertDeleteType extends ElegantAlertType {
   final Color deleteButtonColor;
   final Color cancelButtonColor;
 
-  final ElegantBody ? body;
+  final ElegantBodyWidget ? body;
 
   ElegantAlertDeleteType({
     required this.onDeletePressed,
@@ -120,7 +120,7 @@ class ElegantAlertInfoType extends ElegantAlertType {
   final String confirmButtonText;
   final Function()? confirmButtonPressed;
   final Color confirmButtonColor;
-  final ElegantBody ? body;
+  final ElegantBodyWidget ? body;
 
   ElegantAlertInfoType({
     required this.confirmButtonPressed,
