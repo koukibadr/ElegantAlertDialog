@@ -17,9 +17,9 @@ class ElegantAlertMultiActionsType extends ElegantAlertType {
   final String secondaryActionText;
   final String customActionText;
 
-  final Function()? onPrimaryButtonPressed;
-  final Function()? onSecondaryButtonPressed;
-  final Function()? onCustomButtonPressed;
+  final void Function()? onPrimaryButtonPressed;
+  final void Function()? onSecondaryButtonPressed;
+  final void Function()? onCustomButtonPressed;
 
   final Color primaryButtonColor;
   final Color secondaryButtonColor;
@@ -56,8 +56,8 @@ class ElegantAlertPermissionType extends ElegantAlertType {
   final String allowButtonText;
   final String denyButtonText;
 
-  final Function()? onAllowButtonPressed;
-  final Function()? onDenyButtonPressed;
+  final void Function()? onAllowButtonPressed;
+  final void Function()? onDenyButtonPressed;
 
   final Color allowButtonColor;
   final Color denyButtonColor;
@@ -118,7 +118,7 @@ class ElegantAlertDeleteType extends ElegantAlertType {
 
 class ElegantAlertInfoType extends ElegantAlertType {
   final String confirmButtonText;
-  final Function()? confirmButtonPressed;
+  final void Function()? confirmButtonPressed;
   final Color confirmButtonColor;
   final ElegantBodyWidget ? body;
 
