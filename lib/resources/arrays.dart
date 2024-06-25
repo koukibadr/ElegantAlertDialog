@@ -1,0 +1,1 @@
+enum AnimationTypes { slideAnimation, scaleAnimation }

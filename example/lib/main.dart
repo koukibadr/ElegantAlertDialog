@@ -1,4 +1,5 @@
 import 'package:elegant_alert_dialog/elegant_alert_dialog.dart';
+import 'package:elegant_alert_dialog/resources/arrays.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -63,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     bodyText: const Text(
                         "This is to inform you that you are seeing Elegant Alert Dialogs."),
                   ),
+                  animationType: AnimationTypes.slideAnimation,
                 ).show(context);
               },
               child: const Text('Info'),
