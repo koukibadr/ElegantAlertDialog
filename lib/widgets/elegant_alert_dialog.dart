@@ -195,65 +195,48 @@ class ElegantAlertDialog extends StatefulWidget {
   State<ElegantAlertDialog> createState() => _ElegantAlertDialogState();
 }
 
-class _ElegantAlertDialogState extends State<ElegantAlertDialog>
+class _ElegantAlertDialogState<T> extends State<ElegantAlertDialog>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
-
-  late Animation<Offset> offsetAnimation;
-  late AnimationController slideController;
-
-  late Animation<double> _popUpTween;
+  late Animation<dynamic> offsetAnimation;
+  late Tween<dynamic> animationTween;
 
   @override
   void initState() {
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 800),
+    );
     if (widget.animationType == AnimationTypes.scaleAnimation) {
-      _animationController = AnimationController(
-        vsync: this,
-        duration: const Duration(milliseconds: 800),
-      )..addListener(() {
-          setState(() {});
-        });
-      _popUpTween = Tween<double>(begin: 0.0, end: 1.0).animate(
-        CurvedAnimation(
-          parent: _animationController,
-          curve: Curves.fastEaseInToSlowEaseOut,
-        ),
+      animationTween = Tween<double>(
+        begin: 0.0,
+        end: 1.0,
       );
     } else {
-      slideController = AnimationController(
-        duration: const Duration(seconds: 2),
-        vsync: this,
-      );
-      offsetAnimation = Tween<Offset>(
+      animationTween = Tween<Offset>(
         begin: const Offset(2, 0),
         end: const Offset(0, 0),
-      ).animate(
-        CurvedAnimation(
-          parent: slideController,
-          curve: Curves.easeInCirc,
-        ),
       );
     }
+    offsetAnimation = animationTween.animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.fastEaseInToSlowEaseOut,
+      ),
+    );
 
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) => animate());
   }
 
   void animate() {
-    if (widget.animationType == AnimationTypes.scaleAnimation) {
-      _animationController.forward();
-    } else {
-      slideController.forward();
-    }
+    _animationController.forward();
   }
 
   @override
   void dispose() {
-    if (widget.animationType == AnimationTypes.scaleAnimation) {
-      _animationController.dispose();
-    } else {
-      slideController.dispose();
-    }
+    _animationController.dispose();
+
     super.dispose();
   }
 
@@ -261,12 +244,12 @@ class _ElegantAlertDialogState extends State<ElegantAlertDialog>
   Widget build(BuildContext context) {
     if (widget.animationType == AnimationTypes.scaleAnimation) {
       return Transform.scale(
-        scale: _popUpTween.value,
+        scale: offsetAnimation.value,
         child: renderElegantAlert(),
       );
     } else {
       return SlideTransition(
-        position: offsetAnimation,
+        position: offsetAnimation as Animation<Offset>,
         child: renderElegantAlert(),
       );
     }
