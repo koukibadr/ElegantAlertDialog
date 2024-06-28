@@ -122,6 +122,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     bodyText: const Text("Choose one of the following."),
                   ),
+                  primaryButtonText: 'Confirm',
+                  secondButtonText: 'Send',
+                  customButtonText: 'Cancel',
+                  animationType: AnimationTypes.slideAnimation,
                 ).show(context);
               },
               child: const Text('Multi action'),
@@ -179,9 +183,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                               "This should be deep enough for this example.",
                                             ),
                                           ),
-                                          onPrimaryButtonPressed: () {},
-                                          onSecondaryButtonPressed: () {},
-                                          onCustomButtonPressed: () {},
+                                          primaryButtonText: 'Confirm',
+                                          secondButtonText: 'Send',
+                                          customButtonText: 'Cancel',
                                         ).show(context);
                                       },
                                     );

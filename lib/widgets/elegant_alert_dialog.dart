@@ -18,22 +18,25 @@ class ElegantAlertDialog extends StatefulWidget {
     this.dialogShadowColor,
     this.dialogElevation = 8,
     this.animationType = AnimationTypes.scaleAnimation,
+    this.animationCurve = Curves.ease,
+    this.animationDuration = const Duration(seconds: 1),
   });
 
   ElegantAlertDialog.multiActions({
     super.key,
     required this.body,
-    this.title,
+    required this.primaryButtonText,
+    required this.secondButtonText,
+    required this.customButtonText,
     this.primaryButtonColor = Colors.blue,
-    this.primaryButtonText = 'Confirm',
-    this.onPrimaryButtonPressed,
     this.secondButtonColor = Colors.grey,
-    this.secondButtonText = 'Learn more',
-    this.onSecondaryButtonPressed,
     this.customButtonColor = Colors.green,
-    this.customButtonText = 'Cancel',
+    this.onPrimaryButtonPressed,
+    this.onSecondaryButtonPressed,
     this.onCustomButtonPressed,
     this.animationType = AnimationTypes.scaleAnimation,
+    this.animationCurve = Curves.ease,
+    this.animationDuration = const Duration(seconds: 1),
   }) {
     borderColor = multiActionColor;
     backgroundColor = Colors.white;
@@ -63,6 +66,8 @@ class ElegantAlertDialog extends StatefulWidget {
     this.denyButtonText = 'Learn more',
     this.onDenyButtonPressed,
     this.animationType = AnimationTypes.scaleAnimation,
+    this.animationCurve = Curves.ease,
+    this.animationDuration = const Duration(seconds: 1),
   }) {
     borderColor = permissionColor;
     backgroundColor = Colors.white;
@@ -89,6 +94,8 @@ class ElegantAlertDialog extends StatefulWidget {
     this.cancelButtonText = 'Learn more',
     this.onCancelPressed,
     this.animationType = AnimationTypes.scaleAnimation,
+    this.animationCurve = Curves.ease,
+    this.animationDuration = const Duration(seconds: 1),
   }) {
     borderColor = errorColor;
     backgroundColor = Colors.white;
@@ -112,6 +119,8 @@ class ElegantAlertDialog extends StatefulWidget {
     this.confirmButtonText = 'Confirm',
     this.onConfirmButtonPressed,
     this.animationType = AnimationTypes.scaleAnimation,
+    this.animationCurve = Curves.ease,
+    this.animationDuration = const Duration(seconds: 1),
   }) {
     borderColor = infoColor;
     backgroundColor = Colors.white;
@@ -124,7 +133,7 @@ class ElegantAlertDialog extends StatefulWidget {
     );
   }
 
-  final Widget? title;
+  Widget? title;
   final ElegantBodyWidget? body;
   late Color backgroundColor;
   late Color? borderColor;
@@ -174,6 +183,9 @@ class ElegantAlertDialog extends StatefulWidget {
   late ElegantAlertType? elegantAlertType;
   late AnimationTypes animationType;
 
+  final Curve animationCurve;
+  final Duration animationDuration;
+
   void show(BuildContext context) {
     showDialog(
       context: context,
@@ -181,10 +193,8 @@ class ElegantAlertDialog extends StatefulWidget {
         return Dialog(
           elevation: dialogElevation,
           backgroundColor: Colors.transparent,
-          insetAnimationDuration: const Duration(
-            milliseconds: 800,
-          ),
-          insetAnimationCurve: Curves.fastEaseInToSlowEaseOut,
+          insetAnimationDuration: animationDuration,
+          insetAnimationCurve: animationCurve,
           child: this,
         );
       },
@@ -205,14 +215,17 @@ class _ElegantAlertDialogState<T> extends State<ElegantAlertDialog>
   void initState() {
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 800),
-    );
+      duration: widget.animationDuration,
+    )..addListener((){
+      setState(() {});
+    });
     if (widget.animationType == AnimationTypes.scaleAnimation) {
       animationTween = Tween<double>(
         begin: 0.0,
         end: 1.0,
       );
     } else {
+      //TODO paramaterize slide transition direction
       animationTween = Tween<Offset>(
         begin: const Offset(2, 0),
         end: const Offset(0, 0),
@@ -221,7 +234,7 @@ class _ElegantAlertDialogState<T> extends State<ElegantAlertDialog>
     offsetAnimation = animationTween.animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Curves.fastEaseInToSlowEaseOut,
+        curve: widget.animationCurve,
       ),
     );
 
@@ -236,7 +249,6 @@ class _ElegantAlertDialogState<T> extends State<ElegantAlertDialog>
   @override
   void dispose() {
     _animationController.dispose();
-
     super.dispose();
   }
 
@@ -257,11 +269,12 @@ class _ElegantAlertDialogState<T> extends State<ElegantAlertDialog>
 
   Widget renderElegantAlert() {
     return Container(
-      height: 250,
+      height: 250,//TODO check this hard coded value
       decoration: BoxDecoration(
         color: widget.backgroundColor,
         boxShadow: widget.dialogShadowColor ??
             const [
+              //TODO parameterize box shadow
               BoxShadow(
                 color: dialogShadowColorConst,
                 blurRadius: 0.5,
@@ -269,7 +282,9 @@ class _ElegantAlertDialogState<T> extends State<ElegantAlertDialog>
                 blurStyle: BlurStyle.outer,
               )
             ],
+        //TODO parameterize border radius
         borderRadius: BorderRadius.circular(10),
+        //TODO parameterize border
         border: Border.all(
           width: 1,
           color: widget.borderColor!,
