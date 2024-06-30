@@ -10,7 +10,6 @@ class ElegantAlertDialog extends StatefulWidget {
   ElegantAlertDialog({
     super.key,
     this.body,
-    this.title,
     this.backgroundColor = Colors.white,
     this.radius = 0,
     this.borderColor,
@@ -18,77 +17,90 @@ class ElegantAlertDialog extends StatefulWidget {
     this.dialogShadowColor,
     this.dialogElevation = 8,
     this.animationType = AnimationTypes.scaleAnimation,
+    this.animationCurve = Curves.ease,
+    this.animationDuration = const Duration(
+      seconds: 1,
+    ),
   });
 
   ElegantAlertDialog.multiActions({
     super.key,
     required this.body,
-    this.title,
-    this.primaryButtonColor = Colors.blue,
-    this.primaryButtonText = 'Confirm',
-    this.onPrimaryButtonPressed,
+    required this.confirmButtonText,
+    required this.secondButtonText,
+    required this.cancelButtonText,
+    this.confirmButtonColor = Colors.blue,
     this.secondButtonColor = Colors.grey,
-    this.secondButtonText = 'Learn more',
+    this.cancelButtonColor = Colors.green,
+    this.onConfirmButtonPressed,
     this.onSecondaryButtonPressed,
-    this.customButtonColor = Colors.green,
-    this.customButtonText = 'Cancel',
-    this.onCustomButtonPressed,
+    this.onCancelPressed,
     this.animationType = AnimationTypes.scaleAnimation,
+    this.animationCurve = Curves.ease,
+    this.animationDuration = const Duration(
+      seconds: 1,
+    ),
   }) {
     borderColor = multiActionColor;
     backgroundColor = Colors.white;
     radius = 5;
     elegantAlertType = ElegantAlertMultiActionsType(
-      primaryActionText: primaryButtonText!,
+      primaryActionText: confirmButtonText!,
       secondaryActionText: secondButtonText!,
-      customActionText: customButtonText!,
-      primaryButtonColor: primaryButtonColor!,
+      customActionText: cancelButtonText!,
+      primaryButtonColor: confirmButtonColor!,
       secondaryButtonColor: secondButtonColor!,
-      customButtonColor: customButtonColor!,
-      onPrimaryButtonPressed: onPrimaryButtonPressed,
+      customButtonColor: cancelButtonColor!,
+      onPrimaryButtonPressed: onConfirmButtonPressed,
       onSecondaryButtonPressed: onSecondaryButtonPressed,
-      onCustomButtonPressed: onCustomButtonPressed,
+      onCustomButtonPressed: onCancelPressed,
       body: body,
     );
   }
 
   ElegantAlertDialog.permission({
     super.key,
-    this.body,
-    this.title,
-    this.allowButtonColor = Colors.blue,
-    this.allowButtonText = 'Confirm',
-    this.onAllowButtonPressed,
-    this.denyButtonColor = Colors.grey,
-    this.denyButtonText = 'Learn more',
-    this.onDenyButtonPressed,
+    required this.body,
+    required this.confirmButtonText,
+    required this.cancelButtonText,
+    this.onConfirmButtonPressed,
+    this.onCancelPressed,
+    this.confirmButtonColor = Colors.blue,
+    this.cancelButtonColor = Colors.grey,
     this.animationType = AnimationTypes.scaleAnimation,
+    this.animationCurve = Curves.ease,
+    this.animationDuration = const Duration(
+      seconds: 1,
+    ),
   }) {
     borderColor = permissionColor;
     backgroundColor = Colors.white;
     radius = 5;
     elegantAlertType = ElegantAlertPermissionType(
-      allowButtonText: allowButtonText!,
-      denyButtonText: denyButtonText!,
-      allowButtonColor: allowButtonColor!,
-      denyButtonColor: denyButtonColor!,
-      onAllowButtonPressed: onAllowButtonPressed,
-      onDenyButtonPressed: onDenyButtonPressed,
+      allowButtonText: confirmButtonText!,
+      denyButtonText: cancelButtonText!,
+      allowButtonColor: confirmButtonColor!,
+      denyButtonColor: cancelButtonColor!,
+      onAllowButtonPressed: onConfirmButtonPressed,
+      onDenyButtonPressed: onCancelPressed,
       body: body,
     );
   }
 
   ElegantAlertDialog.caution({
     super.key,
-    this.body,
-    this.title,
-    this.deleteButtonColor = Colors.blue,
-    this.deleteButtonText = 'Confirm',
-    required this.onDeletePressed,
-    this.cancelButtonColor = Colors.grey,
-    this.cancelButtonText = 'Learn more',
+    required this.body,
+    required this.confirmButtonText,
+    required this.cancelButtonText,
+    this.onConfirmButtonPressed,
     this.onCancelPressed,
+    this.confirmButtonColor = Colors.blue,
+    this.cancelButtonColor = Colors.grey,
     this.animationType = AnimationTypes.scaleAnimation,
+    this.animationCurve = Curves.ease,
+    this.animationDuration = const Duration(
+      seconds: 1,
+    ),
   }) {
     borderColor = errorColor;
     backgroundColor = Colors.white;
@@ -97,9 +109,9 @@ class ElegantAlertDialog extends StatefulWidget {
       cancelButtonColor: cancelButtonColor!,
       cancelButtonText: cancelButtonText!,
       onCancelPressed: onCancelPressed,
-      deleteButtonColor: deleteButtonColor!,
-      deleteButtonText: deleteButtonText!,
-      onDeletePressed: onDeletePressed,
+      deleteButtonColor: confirmButtonColor!,
+      deleteButtonText: confirmButtonText!,
+      onDeletePressed: onConfirmButtonPressed,
       body: body,
     );
   }
@@ -107,11 +119,14 @@ class ElegantAlertDialog extends StatefulWidget {
   ElegantAlertDialog.info({
     super.key,
     required this.body,
-    this.title,
+    required this.confirmButtonText,
     this.confirmButtonColor = Colors.blue,
-    this.confirmButtonText = 'Confirm',
     this.onConfirmButtonPressed,
     this.animationType = AnimationTypes.scaleAnimation,
+    this.animationCurve = Curves.ease,
+    this.animationDuration = const Duration(
+      seconds: 1,
+    ),
   }) {
     borderColor = infoColor;
     backgroundColor = Colors.white;
@@ -124,7 +139,6 @@ class ElegantAlertDialog extends StatefulWidget {
     );
   }
 
-  final Widget? title;
   final ElegantBodyWidget? body;
   late Color backgroundColor;
   late Color? borderColor;
@@ -133,28 +147,9 @@ class ElegantAlertDialog extends StatefulWidget {
   List<BoxShadow>? dialogShadowColor;
   double? dialogElevation;
 
-  //! multi actions constructor
-  String? primaryButtonText;
   String? secondButtonText;
-  String? customButtonText;
-
-  Function()? onPrimaryButtonPressed;
   Function()? onSecondaryButtonPressed;
-  Function()? onCustomButtonPressed;
-
-  Color? primaryButtonColor;
   Color? secondButtonColor;
-  Color? customButtonColor;
-
-  //! permission constructor
-  String? allowButtonText;
-  String? denyButtonText;
-
-  Function()? onAllowButtonPressed;
-  Function()? onDenyButtonPressed;
-
-  Color? allowButtonColor;
-  Color? denyButtonColor;
 
   //! info constructor
   String? confirmButtonText;
@@ -162,17 +157,15 @@ class ElegantAlertDialog extends StatefulWidget {
   Color? confirmButtonColor;
 
   //! delete constructor
-  String? deleteButtonText;
   String? cancelButtonText;
-
-  void Function()? onDeletePressed;
   void Function()? onCancelPressed;
-
-  Color? deleteButtonColor;
   Color? cancelButtonColor;
 
   late ElegantAlertType? elegantAlertType;
   late AnimationTypes animationType;
+
+  final Curve animationCurve;
+  final Duration animationDuration;
 
   void show(BuildContext context) {
     showDialog(
@@ -205,8 +198,10 @@ class _ElegantAlertDialogState<T> extends State<ElegantAlertDialog>
   void initState() {
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 800),
-    );
+      duration: widget.animationDuration,
+    )..addListener(() {
+        setState(() {});
+      });
     if (widget.animationType == AnimationTypes.scaleAnimation) {
       animationTween = Tween<double>(
         begin: 0.0,
@@ -257,7 +252,7 @@ class _ElegantAlertDialogState<T> extends State<ElegantAlertDialog>
 
   Widget renderElegantAlert() {
     return Container(
-      height: 250,
+      height: 250, //TODO check this hard coded value
       decoration: BoxDecoration(
         color: widget.backgroundColor,
         boxShadow: widget.dialogShadowColor ??

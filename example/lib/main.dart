@@ -15,7 +15,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+        ),
         useMaterial3: true,
       ),
       home: const MyHomePage(),
@@ -54,6 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               onPressed: () {
                 ElegantAlertDialog.info(
+                  confirmButtonText: 'Confirm',
                   body: ElegantBodyWidget(
                     titleText: const Text(
                       "Info",
@@ -78,7 +81,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               onPressed: () {
                 ElegantAlertDialog.caution(
-                  onDeletePressed: () {},
+                  confirmButtonText: 'Delete',
+                  cancelButtonText: 'Cancel',
+                  onConfirmButtonPressed: () {},
                   body: ElegantBodyWidget(
                     titleText: const Text(
                       "Wait!!!",
@@ -100,7 +105,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               onPressed: () {
-                ElegantAlertDialog.permission().show(context);
+                ElegantAlertDialog.permission(
+                  body: ElegantBodyWidget(
+                    bodyText: Text(''),
+                    titleText: Text("Alert title"),
+                  ),
+                  confirmButtonText: 'Allow',
+                  cancelButtonText: 'Deny',
+                ).show(context);
               },
               child: const Text('Permission'),
             ),
@@ -122,6 +134,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     bodyText: const Text("Choose one of the following."),
                   ),
+                  confirmButtonText: 'Confirm',
+                  secondButtonText: 'Send',
+                  cancelButtonText: 'Cancel',
+                  animationType: AnimationTypes.slideAnimation,
                 ).show(context);
               },
               child: const Text('Multi action'),
@@ -134,7 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               onPressed: () {
-                ElegantAlertDialog.info(
+                ElegantAlertDialog(
                   body: ElegantBodyWidget(
                     titleText: const Text(
                       "This is a cascading alert! 1",
@@ -143,60 +159,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       "Press confirm to see how deep it goes.",
                     ),
                   ),
-                  onConfirmButtonPressed: () {
-                    Navigator.of(context).maybePop().then(
-                      (_) {
-                        ElegantAlertDialog.caution(
-                          body: ElegantBodyWidget(
-                            titleText: const Text(
-                              "This is a cascading alert! 2",
-                            ),
-                            bodyText: const Text(
-                              "Yup, if you press confirm it will go deeper.",
-                            ),
-                          ),
-                          onDeletePressed: () {
-                            Navigator.of(context).maybePop().then(
-                              (_) {
-                                ElegantAlertDialog.permission(
-                                  body: ElegantBodyWidget(
-                                    titleText: const Text(
-                                      "This is a cascading alert! 3",
-                                    ),
-                                    bodyText: const Text(
-                                      "If you give permission we can go deeper.",
-                                    ),
-                                  ),
-                                  onAllowButtonPressed: () {
-                                    Navigator.of(context).maybePop().then(
-                                      (_) {
-                                        ElegantAlertDialog.multiActions(
-                                          body: ElegantBodyWidget(
-                                            titleText: const Text(
-                                              "This is a cascading alert! 4",
-                                            ),
-                                            bodyText: const Text(
-                                              "This should be deep enough for this example.",
-                                            ),
-                                          ),
-                                          onPrimaryButtonPressed: () {},
-                                          onSecondaryButtonPressed: () {},
-                                          onCustomButtonPressed: () {},
-                                        ).show(context);
-                                      },
-                                    );
-                                  },
-                                ).show(context);
-                              },
-                            );
-                          },
-                        ).show(context);
-                      },
-                    );
-                  },
                 ).show(context);
               },
-              child: const Text('Cascading alerts'),
+              child: const Text('Custom alert'),
             ),
           ],
         ),
