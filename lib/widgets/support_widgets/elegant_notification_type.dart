@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 
 sealed class ElegantAlertType {
   Widget build();
+  
   Color get primaryColor;
 }
 

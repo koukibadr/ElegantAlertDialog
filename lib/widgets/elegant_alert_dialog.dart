@@ -12,15 +12,15 @@ class ElegantAlertDialog extends StatefulWidget {
     this.body,
     this.backgroundColor = Colors.white,
     this.radius = 0,
-    this.borderColor,
+    this.borderColor = Colors.blue,
     this.actions = const [],
     this.dialogShadowColor,
-    this.dialogElevation = 8,
     this.animationType = AnimationTypes.scaleAnimation,
     this.animationCurve = Curves.ease,
     this.animationDuration = const Duration(
       seconds: 1,
     ),
+    this.barrierDismissable = true,
   });
 
   ElegantAlertDialog.multiActions({
@@ -40,10 +40,11 @@ class ElegantAlertDialog extends StatefulWidget {
     this.animationDuration = const Duration(
       seconds: 1,
     ),
+    this.backgroundColor = Colors.white,
+    this.radius = 5,
+    this.dialogShadowColor,
+    this.barrierDismissable = true,
   }) {
-    borderColor = multiActionColor;
-    backgroundColor = Colors.white;
-    radius = 5;
     elegantAlertType = ElegantAlertMultiActionsType(
       primaryActionText: confirmButtonText!,
       secondaryActionText: secondButtonText!,
@@ -72,10 +73,11 @@ class ElegantAlertDialog extends StatefulWidget {
     this.animationDuration = const Duration(
       seconds: 1,
     ),
+    this.backgroundColor = Colors.white,
+    this.radius = 5,
+    this.dialogShadowColor,
+    this.barrierDismissable = true,
   }) {
-    borderColor = permissionColor;
-    backgroundColor = Colors.white;
-    radius = 5;
     elegantAlertType = ElegantAlertPermissionType(
       allowButtonText: confirmButtonText!,
       denyButtonText: cancelButtonText!,
@@ -101,10 +103,11 @@ class ElegantAlertDialog extends StatefulWidget {
     this.animationDuration = const Duration(
       seconds: 1,
     ),
+    this.backgroundColor = Colors.white,
+    this.radius = 5,
+    this.dialogShadowColor,
+    this.barrierDismissable = true,
   }) {
-    borderColor = errorColor;
-    backgroundColor = Colors.white;
-    radius = 5;
     elegantAlertType = ElegantAlertDeleteType(
       cancelButtonColor: cancelButtonColor!,
       cancelButtonText: cancelButtonText!,
@@ -127,10 +130,11 @@ class ElegantAlertDialog extends StatefulWidget {
     this.animationDuration = const Duration(
       seconds: 1,
     ),
+    this.backgroundColor = Colors.white,
+    this.radius = 5,
+    this.dialogShadowColor,
+    this.barrierDismissable = true,
   }) {
-    borderColor = infoColor;
-    backgroundColor = Colors.white;
-    radius = 5;
     elegantAlertType = ElegantAlertInfoType(
       confirmButtonColor: confirmButtonColor!,
       confirmButtonPressed: onConfirmButtonPressed,
@@ -139,40 +143,39 @@ class ElegantAlertDialog extends StatefulWidget {
     );
   }
 
+  //TODO add missing attribute documentation
   final ElegantBodyWidget? body;
-  late Color backgroundColor;
-  late Color? borderColor;
-  late double radius;
-  late List<Widget> actions;
-  List<BoxShadow>? dialogShadowColor;
-  double? dialogElevation;
-
-  String? secondButtonText;
-  Function()? onSecondaryButtonPressed;
-  Color? secondButtonColor;
-
-  //! info constructor
-  String? confirmButtonText;
-  Function()? onConfirmButtonPressed;
-  Color? confirmButtonColor;
-
-  //! delete constructor
-  String? cancelButtonText;
-  void Function()? onCancelPressed;
-  Color? cancelButtonColor;
-
-  late ElegantAlertType? elegantAlertType;
-  late AnimationTypes animationType;
-
+  final Color backgroundColor;
+  final double radius;
+  final List<BoxShadow>? dialogShadowColor;
+  final AnimationTypes animationType;
   final Curve animationCurve;
   final Duration animationDuration;
+  final bool barrierDismissable;
+
+  late Color? borderColor;
+  late List<Widget> actions;
+
+  late String? confirmButtonText;
+  late String? secondButtonText;
+  late String? cancelButtonText;
+
+  late Function()? onConfirmButtonPressed;
+  late Function()? onSecondaryButtonPressed;
+  late Function()? onCancelPressed;
+
+  late Color? confirmButtonColor;
+  late Color? secondButtonColor;
+  late Color? cancelButtonColor;
+
+  late ElegantAlertType? elegantAlertType;
 
   void show(BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: barrierDismissable,
       builder: (context) {
         return Dialog(
-          elevation: dialogElevation,
           backgroundColor: Colors.transparent,
           insetAnimationDuration: const Duration(
             milliseconds: 800,
@@ -219,6 +222,10 @@ class _ElegantAlertDialogState<T> extends State<ElegantAlertDialog>
         curve: Curves.fastEaseInToSlowEaseOut,
       ),
     );
+
+    if (widget.elegantAlertType != null) {
+      widget.borderColor = widget.elegantAlertType?.primaryColor;
+    }
 
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) => animate());
@@ -267,7 +274,9 @@ class _ElegantAlertDialogState<T> extends State<ElegantAlertDialog>
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
           width: 1,
-          color: widget.borderColor!,
+          color: widget.borderColor ??
+              widget.elegantAlertType?.primaryColor ??
+              Colors.blue,
         ),
       ),
       child: widget.elegantAlertType?.build(),
