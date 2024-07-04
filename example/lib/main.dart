@@ -107,8 +107,8 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 ElegantAlertDialog.permission(
                   alertContent: ElegantBodyWidget(
-                    bodyText: Text(''),
-                    titleText: Text("Alert title"),
+                    bodyText: const Text(''),
+                    titleText: const Text("Alert title"),
                   ),
                   confirmButtonText: 'Allow',
                   cancelButtonText: 'Deny',

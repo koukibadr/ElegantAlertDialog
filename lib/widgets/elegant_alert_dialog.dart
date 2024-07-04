@@ -2,6 +2,7 @@
 
 import 'package:elegant_alert_dialog/resources/arrays.dart';
 import 'package:elegant_alert_dialog/resources/colors.dart';
+import 'package:elegant_alert_dialog/widgets/dialogs_widgets/custom_elegant_alert.dart';
 import 'package:elegant_alert_dialog/widgets/support_widgets/elegant_body_widget.dart';
 import 'package:elegant_alert_dialog/widgets/support_widgets/elegant_notification_type.dart';
 import 'package:flutter/material.dart';
@@ -9,9 +10,8 @@ import 'package:flutter/material.dart';
 class ElegantAlertDialog extends StatefulWidget {
   ElegantAlertDialog({
     super.key,
-    this.alertContent,
+    required this.alertContent,
     this.backgroundColor = Colors.white,
-    this.radius = 0,
     this.borderColor = Colors.blue,
     this.actions = const [],
     this.dialogShadow,
@@ -44,7 +44,6 @@ class ElegantAlertDialog extends StatefulWidget {
       seconds: 1,
     ),
     this.backgroundColor = Colors.white,
-    this.radius = 5,
     this.dialogShadow,
     this.barrierDismissable = true,
     this.height = 150,
@@ -52,7 +51,7 @@ class ElegantAlertDialog extends StatefulWidget {
     this.borderSize = 1,
   }) {
     elegantAlertType = ElegantAlertMultiActionsType(
-      alertContent!,
+      alertContent,
       primaryActionText: confirmButtonText!,
       secondaryActionText: secondButtonText!,
       customActionText: cancelButtonText!,
@@ -80,7 +79,6 @@ class ElegantAlertDialog extends StatefulWidget {
       seconds: 1,
     ),
     this.backgroundColor = Colors.white,
-    this.radius = 5,
     this.dialogShadow,
     this.barrierDismissable = true,
     this.height = 150,
@@ -88,7 +86,7 @@ class ElegantAlertDialog extends StatefulWidget {
     this.borderSize = 1,
   }) {
     elegantAlertType = ElegantAlertPermissionType(
-      alertContent!,
+      alertContent,
       allowButtonText: confirmButtonText!,
       denyButtonText: cancelButtonText!,
       allowButtonColor: confirmButtonColor!,
@@ -113,7 +111,6 @@ class ElegantAlertDialog extends StatefulWidget {
       seconds: 1,
     ),
     this.backgroundColor = Colors.white,
-    this.radius = 5,
     this.dialogShadow,
     this.barrierDismissable = true,
     this.height = 150,
@@ -121,7 +118,7 @@ class ElegantAlertDialog extends StatefulWidget {
     this.borderSize = 1,
   }) {
     elegantAlertType = ElegantAlertDeleteType(
-      alertContent!,
+      alertContent,
       cancelButtonColor: cancelButtonColor!,
       cancelButtonText: cancelButtonText!,
       onCancelPressed: onCancelPressed,
@@ -143,7 +140,6 @@ class ElegantAlertDialog extends StatefulWidget {
       seconds: 1,
     ),
     this.backgroundColor = Colors.white,
-    this.radius = 5,
     this.dialogShadow,
     this.barrierDismissable = true,
     this.height = 150,
@@ -151,7 +147,7 @@ class ElegantAlertDialog extends StatefulWidget {
     this.borderSize = 1,
   }) {
     elegantAlertType = ElegantAlertInfoType(
-      alertContent!,
+      alertContent,
       confirmButtonColor: confirmButtonColor!,
       confirmButtonPressed: onConfirmButtonPressed,
       confirmButtonText: confirmButtonText!,
@@ -159,9 +155,8 @@ class ElegantAlertDialog extends StatefulWidget {
   }
 
   //TODO add missing attribute documentation
-  final ElegantBodyWidget? alertContent;
+  final ElegantBodyWidget alertContent;
   final Color backgroundColor;
-  final double radius;
   final List<BoxShadow>? dialogShadow;
   final AnimationTypes animationType;
   final Curve animationCurve;
@@ -187,7 +182,7 @@ class ElegantAlertDialog extends StatefulWidget {
   late Color? secondButtonColor;
   late Color? cancelButtonColor;
 
-  late ElegantAlertType? elegantAlertType;
+  ElegantAlertType? elegantAlertType;
 
   void show(BuildContext context) {
     showDialog(
@@ -296,7 +291,11 @@ class _ElegantAlertDialogState<T> extends State<ElegantAlertDialog>
               Colors.blue,
         ),
       ),
-      child: widget.elegantAlertType?.build(),
+      child: widget.elegantAlertType == null
+          ? CustomElegantAlert(
+              elegantAlertDialog: widget,
+            )
+          : widget.elegantAlertType?.build(),
     );
   }
 }
