@@ -49,23 +49,29 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                maximumSize: const Size(100, 100),
+                maximumSize: const Size(
+                  100,
+                  100,
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
               ),
               onPressed: () {
                 ElegantAlertDialog.info(
+                  height: 200,
                   confirmButtonText: 'Confirm',
                   alertContent: ElegantBodyWidget(
                     titleText: const Text(
-                      "Info",
+                      "Account updated",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     bodyText: const Text(
-                        "This is to inform you that you are seeing Elegant Alert Dialogs."),
+                      """We've made some improvements to your account to enhance your experience.
+For more information, please visit our Help Center.""",
+                    ),
                   ),
                   animationType: AnimationTypes.slideAnimation,
                 ).show(context);
@@ -86,12 +92,28 @@ class _MyHomePageState extends State<MyHomePage> {
                   onConfirmButtonPressed: () {},
                   alertContent: ElegantBodyWidget(
                     titleText: const Text(
-                      "Wait!!!",
+                      "Are you sure you want to delete?",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    bodyText: const Text("your about to delete everything!"),
+                    bodyText: const Text.rich(
+                      TextSpan(
+                          text: "This action cannot be undone",
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          children: [
+                            TextSpan(
+                                text:
+                                    " selected data will be permanently deleted from your device.",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.normal,
+                                ))
+                          ]),
+                    ),
                   ),
                 ).show(context);
               },
@@ -106,9 +128,25 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               onPressed: () {
                 ElegantAlertDialog.permission(
+                  height: 200,
                   alertContent: ElegantBodyWidget(
-                    bodyText: const Text(''),
-                    titleText: const Text("Alert title"),
+                    titleText: const Row(
+                      children: [
+                        Icon(Icons.camera),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          'Access Camera',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    bodyText: const Text(
+                      "Allow App to take pictures and videos. Capture memorable moments and share them with friends!",
+                    ),
                   ),
                   confirmButtonText: 'Allow',
                   cancelButtonText: 'Deny',
@@ -125,19 +163,23 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               onPressed: () {
                 ElegantAlertDialog.multiActions(
+                  height: 180,
                   alertContent: ElegantBodyWidget(
                     titleText: const Text(
-                      "Multi action alert",
+                      "Access to contact",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    bodyText: const Text("Choose one of the following."),
+                    bodyText: const Text(
+                      "Allow App to access your contact, this will let app synchronize all your friends with your contact list.",
+                    ),
                   ),
-                  confirmButtonText: 'Confirm',
-                  secondButtonText: 'Send',
-                  cancelButtonText: 'Cancel',
+                  confirmButtonText: 'Allow',
+                  secondButtonText: 'Deny',
+                  cancelButtonText: 'Learn More',
                   animationType: AnimationTypes.slideAnimation,
+                  backgroundColor: Colors.white,
                 ).show(context);
               },
               child: const Text('Multi action'),
@@ -151,14 +193,32 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               onPressed: () {
                 ElegantAlertDialog(
+                  borderColor: Colors.brown,
+                  borderRadius: 0,
+                  backgroundColor: Colors.white.withOpacity(0.8),
                   alertContent: ElegantBodyWidget(
                     titleText: const Text(
-                      "This is a cascading alert! 1",
+                      "Your contact list is up to date",
+                      style: TextStyle(
+                        color: Colors.brown,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     bodyText: const Text(
-                      "Press confirm to see how deep it goes.",
+                      "App has been updating all your contact list, now you can use your app with the latest features",
                     ),
                   ),
+                  actions: [
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        'Close',
+                        style: TextStyle(
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                  ],
                 ).show(context);
               },
               child: const Text('Custom alert'),
