@@ -14,13 +14,16 @@ class ElegantAlertDialog extends StatefulWidget {
     this.radius = 0,
     this.borderColor = Colors.blue,
     this.actions = const [],
-    this.dialogShadowColor,
+    this.dialogShadow,
     this.animationType = AnimationTypes.scaleAnimation,
     this.animationCurve = Curves.ease,
     this.animationDuration = const Duration(
       seconds: 1,
     ),
     this.barrierDismissable = true,
+    this.height = 150,
+    this.borderRadius = 10,
+    this.borderSize = 1,
   });
 
   ElegantAlertDialog.multiActions({
@@ -42,8 +45,11 @@ class ElegantAlertDialog extends StatefulWidget {
     ),
     this.backgroundColor = Colors.white,
     this.radius = 5,
-    this.dialogShadowColor,
+    this.dialogShadow,
     this.barrierDismissable = true,
+    this.height = 150,
+    this.borderRadius = 10,
+    this.borderSize = 1,
   }) {
     elegantAlertType = ElegantAlertMultiActionsType(
       primaryActionText: confirmButtonText!,
@@ -75,8 +81,11 @@ class ElegantAlertDialog extends StatefulWidget {
     ),
     this.backgroundColor = Colors.white,
     this.radius = 5,
-    this.dialogShadowColor,
+    this.dialogShadow,
     this.barrierDismissable = true,
+    this.height = 150,
+    this.borderRadius = 10,
+    this.borderSize = 1,
   }) {
     elegantAlertType = ElegantAlertPermissionType(
       allowButtonText: confirmButtonText!,
@@ -105,8 +114,11 @@ class ElegantAlertDialog extends StatefulWidget {
     ),
     this.backgroundColor = Colors.white,
     this.radius = 5,
-    this.dialogShadowColor,
+    this.dialogShadow,
     this.barrierDismissable = true,
+    this.height = 150,
+    this.borderRadius = 10,
+    this.borderSize = 1,
   }) {
     elegantAlertType = ElegantAlertDeleteType(
       cancelButtonColor: cancelButtonColor!,
@@ -132,8 +144,11 @@ class ElegantAlertDialog extends StatefulWidget {
     ),
     this.backgroundColor = Colors.white,
     this.radius = 5,
-    this.dialogShadowColor,
+    this.dialogShadow,
     this.barrierDismissable = true,
+    this.height = 150,
+    this.borderRadius = 10,
+    this.borderSize = 1,
   }) {
     elegantAlertType = ElegantAlertInfoType(
       confirmButtonColor: confirmButtonColor!,
@@ -147,11 +162,15 @@ class ElegantAlertDialog extends StatefulWidget {
   final ElegantBodyWidget? body;
   final Color backgroundColor;
   final double radius;
-  final List<BoxShadow>? dialogShadowColor;
+  final List<BoxShadow>? dialogShadow;
   final AnimationTypes animationType;
   final Curve animationCurve;
   final Duration animationDuration;
   final bool barrierDismissable;
+
+  final double height;
+  final double borderRadius;
+  final double borderSize;
 
   late Color? borderColor;
   late List<Widget> actions;
@@ -177,10 +196,6 @@ class ElegantAlertDialog extends StatefulWidget {
       builder: (context) {
         return Dialog(
           backgroundColor: Colors.transparent,
-          insetAnimationDuration: const Duration(
-            milliseconds: 800,
-          ),
-          insetAnimationCurve: Curves.fastEaseInToSlowEaseOut,
           child: this,
         );
       },
@@ -259,10 +274,13 @@ class _ElegantAlertDialogState<T> extends State<ElegantAlertDialog>
 
   Widget renderElegantAlert() {
     return Container(
-      height: 250, //TODO check this hard coded value
+      height: widget.height,
       decoration: BoxDecoration(
         color: widget.backgroundColor,
-        boxShadow: widget.dialogShadowColor ??
+        borderRadius: BorderRadius.circular(
+          widget.borderRadius,
+        ),
+        boxShadow: widget.dialogShadow ??
             const [
               BoxShadow(
                 color: dialogShadowColorConst,
@@ -271,7 +289,6 @@ class _ElegantAlertDialogState<T> extends State<ElegantAlertDialog>
                 blurStyle: BlurStyle.outer,
               )
             ],
-        borderRadius: BorderRadius.circular(10),
         border: Border.all(
           width: 1,
           color: widget.borderColor ??

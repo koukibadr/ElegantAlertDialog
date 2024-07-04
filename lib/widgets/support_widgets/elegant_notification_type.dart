@@ -13,7 +13,6 @@ sealed class ElegantAlertType {
 }
 
 class ElegantAlertMultiActionsType extends ElegantAlertType {
-  ///! add documentation
   final String primaryActionText;
   final String secondaryActionText;
   final String customActionText;
