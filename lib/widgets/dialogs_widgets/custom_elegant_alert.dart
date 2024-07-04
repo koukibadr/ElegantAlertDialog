@@ -24,7 +24,9 @@ class CustomElegantAlert extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: elegantAlertDialog.borderColor,
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
+                    topLeft: Radius.circular(
+                      elegantAlertDialog.borderRadius,
+                    ),
                   ),
                 ),
               ),

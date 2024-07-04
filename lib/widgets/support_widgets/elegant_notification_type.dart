@@ -8,11 +8,15 @@ import 'package:flutter/material.dart';
 
 sealed class ElegantAlertType {
   final ElegantBodyWidget alertContent;
+  final double borderRadius;
 
-  ElegantAlertType(this.alertContent);
-  
+  ElegantAlertType(
+    this.alertContent,
+    this.borderRadius,
+  );
+
   Widget build();
-  
+
   Color get primaryColor;
 }
 
@@ -30,7 +34,8 @@ class ElegantAlertMultiActionsType extends ElegantAlertType {
   final Color customButtonColor;
 
   ElegantAlertMultiActionsType(
-    super.alertContent, {
+    super.alertContent,
+    super.borderRadius, {
     required this.primaryActionText,
     required this.secondaryActionText,
     required this.customActionText,
@@ -65,7 +70,8 @@ class ElegantAlertPermissionType extends ElegantAlertType {
   final Color denyButtonColor;
 
   ElegantAlertPermissionType(
-    super.alertContent, {
+    super.alertContent,
+    super.borderRadius, {
     required this.onAllowButtonPressed,
     required this.allowButtonText,
     required this.onDenyButtonPressed,
@@ -96,7 +102,8 @@ class ElegantAlertDeleteType extends ElegantAlertType {
   final Color cancelButtonColor;
 
   ElegantAlertDeleteType(
-    super.alertContent, {
+    super.alertContent,
+    super.borderRadius, {
     required this.onDeletePressed,
     required this.deleteButtonText,
     required this.onCancelPressed,
@@ -120,7 +127,8 @@ class ElegantAlertInfoType extends ElegantAlertType {
   final Color confirmButtonColor;
 
   ElegantAlertInfoType(
-    super.alertContent, {
+    super.alertContent,
+    super.borderRadius, {
     required this.confirmButtonPressed,
     required this.confirmButtonText,
     required this.confirmButtonColor,

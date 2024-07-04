@@ -52,6 +52,7 @@ class ElegantAlertDialog extends StatefulWidget {
   }) {
     elegantAlertType = ElegantAlertMultiActionsType(
       alertContent,
+      borderRadius,
       primaryActionText: confirmButtonText!,
       secondaryActionText: secondButtonText!,
       customActionText: cancelButtonText!,
@@ -87,6 +88,7 @@ class ElegantAlertDialog extends StatefulWidget {
   }) {
     elegantAlertType = ElegantAlertPermissionType(
       alertContent,
+      borderRadius,
       allowButtonText: confirmButtonText!,
       denyButtonText: cancelButtonText!,
       allowButtonColor: confirmButtonColor!,
@@ -119,6 +121,7 @@ class ElegantAlertDialog extends StatefulWidget {
   }) {
     elegantAlertType = ElegantAlertDeleteType(
       alertContent,
+      borderRadius,
       cancelButtonColor: cancelButtonColor!,
       cancelButtonText: cancelButtonText!,
       onCancelPressed: onCancelPressed,
@@ -148,13 +151,13 @@ class ElegantAlertDialog extends StatefulWidget {
   }) {
     elegantAlertType = ElegantAlertInfoType(
       alertContent,
+      borderRadius,
       confirmButtonColor: confirmButtonColor!,
       confirmButtonPressed: onConfirmButtonPressed,
       confirmButtonText: confirmButtonText!,
     );
   }
 
-  //TODO add missing attribute documentation
   final ElegantBodyWidget alertContent;
   final Color backgroundColor;
   final List<BoxShadow>? dialogShadow;
@@ -285,7 +288,7 @@ class _ElegantAlertDialogState<T> extends State<ElegantAlertDialog>
               )
             ],
         border: Border.all(
-          width: 1,
+          width: widget.borderSize,
           color: widget.borderColor ??
               widget.elegantAlertType?.primaryColor ??
               Colors.blue,

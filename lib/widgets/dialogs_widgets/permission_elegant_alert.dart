@@ -22,10 +22,12 @@ class PermissonElegantAlert extends StatelessWidget {
               child: Container(
                 width: 10,
                 height: 40,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: permissionColor,
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
+                    topLeft: Radius.circular(
+                      elegantAlertPermission.borderRadius,
+                    ),
                   ),
                 ),
               ),

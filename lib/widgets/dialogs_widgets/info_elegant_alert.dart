@@ -22,10 +22,10 @@ class InfoElegantAlert extends StatelessWidget {
               child: Container(
                 width: 10,
                 height: 40,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: infoColor,
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
+                    topLeft: Radius.circular(elegantAlertInfoType.borderRadius),
                   ),
                 ),
               ),
@@ -52,7 +52,6 @@ class InfoElegantAlert extends StatelessWidget {
                         onPressed: () {
                           if (elegantAlertInfoType.confirmButtonPressed !=
                               null) {
-                                
                             elegantAlertInfoType.confirmButtonPressed!();
                             Navigator.of(context).pop();
                           } else {
