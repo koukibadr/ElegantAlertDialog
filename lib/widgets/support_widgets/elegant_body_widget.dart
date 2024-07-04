@@ -7,11 +7,4 @@ class ElegantBodyWidget {
     required this.bodyText,
     required this.titleText,
   });
-  Text getTitle() {
-    return titleText;
-  }
-
-  Text getBodyText() {
-    return bodyText;
-  }
 }

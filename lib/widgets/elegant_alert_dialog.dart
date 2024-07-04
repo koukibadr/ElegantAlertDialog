@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 class ElegantAlertDialog extends StatefulWidget {
   ElegantAlertDialog({
     super.key,
-    this.body,
+    this.alertContent,
     this.backgroundColor = Colors.white,
     this.radius = 0,
     this.borderColor = Colors.blue,
@@ -28,7 +28,7 @@ class ElegantAlertDialog extends StatefulWidget {
 
   ElegantAlertDialog.multiActions({
     super.key,
-    required this.body,
+    required this.alertContent,
     required this.confirmButtonText,
     required this.secondButtonText,
     required this.cancelButtonText,
@@ -52,6 +52,7 @@ class ElegantAlertDialog extends StatefulWidget {
     this.borderSize = 1,
   }) {
     elegantAlertType = ElegantAlertMultiActionsType(
+      alertContent!,
       primaryActionText: confirmButtonText!,
       secondaryActionText: secondButtonText!,
       customActionText: cancelButtonText!,
@@ -61,13 +62,12 @@ class ElegantAlertDialog extends StatefulWidget {
       onPrimaryButtonPressed: onConfirmButtonPressed,
       onSecondaryButtonPressed: onSecondaryButtonPressed,
       onCustomButtonPressed: onCancelPressed,
-      body: body,
     );
   }
 
   ElegantAlertDialog.permission({
     super.key,
-    required this.body,
+    required this.alertContent,
     required this.confirmButtonText,
     required this.cancelButtonText,
     this.onConfirmButtonPressed,
@@ -88,19 +88,19 @@ class ElegantAlertDialog extends StatefulWidget {
     this.borderSize = 1,
   }) {
     elegantAlertType = ElegantAlertPermissionType(
+      alertContent!,
       allowButtonText: confirmButtonText!,
       denyButtonText: cancelButtonText!,
       allowButtonColor: confirmButtonColor!,
       denyButtonColor: cancelButtonColor!,
       onAllowButtonPressed: onConfirmButtonPressed,
       onDenyButtonPressed: onCancelPressed,
-      body: body,
     );
   }
 
   ElegantAlertDialog.caution({
     super.key,
-    required this.body,
+    required this.alertContent,
     required this.confirmButtonText,
     required this.cancelButtonText,
     this.onConfirmButtonPressed,
@@ -121,19 +121,19 @@ class ElegantAlertDialog extends StatefulWidget {
     this.borderSize = 1,
   }) {
     elegantAlertType = ElegantAlertDeleteType(
+      alertContent!,
       cancelButtonColor: cancelButtonColor!,
       cancelButtonText: cancelButtonText!,
       onCancelPressed: onCancelPressed,
       deleteButtonColor: confirmButtonColor!,
       deleteButtonText: confirmButtonText!,
       onDeletePressed: onConfirmButtonPressed,
-      body: body,
     );
   }
 
   ElegantAlertDialog.info({
     super.key,
-    required this.body,
+    required this.alertContent,
     required this.confirmButtonText,
     this.confirmButtonColor = Colors.blue,
     this.onConfirmButtonPressed,
@@ -151,15 +151,15 @@ class ElegantAlertDialog extends StatefulWidget {
     this.borderSize = 1,
   }) {
     elegantAlertType = ElegantAlertInfoType(
+      alertContent!,
       confirmButtonColor: confirmButtonColor!,
       confirmButtonPressed: onConfirmButtonPressed,
       confirmButtonText: confirmButtonText!,
-      body: body,
     );
   }
 
   //TODO add missing attribute documentation
-  final ElegantBodyWidget? body;
+  final ElegantBodyWidget? alertContent;
   final Color backgroundColor;
   final double radius;
   final List<BoxShadow>? dialogShadow;

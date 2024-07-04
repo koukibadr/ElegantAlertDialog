@@ -33,13 +33,7 @@ class InfoElegantAlert extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
-            elegantAlertInfoType.body?.getTitle() ??
-                const Text(
-                  'This is serious!',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+            elegantAlertInfoType.alertContent.titleText,
           ],
         ),
         Expanded(
@@ -49,10 +43,7 @@ class InfoElegantAlert extends StatelessWidget {
             ),
             child: Column(
               children: [
-                elegantAlertInfoType.body?.getBodyText() ??
-                    const Text(
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                    ),
+                elegantAlertInfoType.alertContent.bodyText,
                 Expanded(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,

@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 class MultiActionElegantAlert extends StatelessWidget {
   final ElegantAlertMultiActionsType elegantNotificationMultiActions;
 
-  const MultiActionElegantAlert(
-      {super.key, required this.elegantNotificationMultiActions});
+  const MultiActionElegantAlert({
+    super.key,
+    required this.elegantNotificationMultiActions,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +33,7 @@ class MultiActionElegantAlert extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
-            elegantNotificationMultiActions.body?.getTitle() ??
-                const Text(
-                  'This is serious!',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+            elegantNotificationMultiActions.alertContent.titleText,
           ],
         ),
         Expanded(
@@ -47,10 +43,7 @@ class MultiActionElegantAlert extends StatelessWidget {
             ),
             child: Column(
               children: [
-                elegantNotificationMultiActions.body?.getBodyText() ??
-                    const Text(
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                    ),
+                elegantNotificationMultiActions.alertContent.bodyText,
                 Expanded(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,

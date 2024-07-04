@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 ElegantAlertDialog.info(
                   confirmButtonText: 'Confirm',
-                  body: ElegantBodyWidget(
+                  alertContent: ElegantBodyWidget(
                     titleText: const Text(
                       "Info",
                       style: TextStyle(
@@ -84,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   confirmButtonText: 'Delete',
                   cancelButtonText: 'Cancel',
                   onConfirmButtonPressed: () {},
-                  body: ElegantBodyWidget(
+                  alertContent: ElegantBodyWidget(
                     titleText: const Text(
                       "Wait!!!",
                       style: TextStyle(
@@ -106,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               onPressed: () {
                 ElegantAlertDialog.permission(
-                  body: ElegantBodyWidget(
+                  alertContent: ElegantBodyWidget(
                     bodyText: Text(''),
                     titleText: Text("Alert title"),
                   ),
@@ -125,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               onPressed: () {
                 ElegantAlertDialog.multiActions(
-                  body: ElegantBodyWidget(
+                  alertContent: ElegantBodyWidget(
                     titleText: const Text(
                       "Multi action alert",
                       style: TextStyle(
@@ -151,7 +151,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               onPressed: () {
                 ElegantAlertDialog(
-                  body: ElegantBodyWidget(
+                  alertContent: ElegantBodyWidget(
                     titleText: const Text(
                       "This is a cascading alert! 1",
                     ),
