@@ -60,6 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 ElegantAlertDialog.info(
                   height: 200,
+                  withAnimation: false,
                   confirmButtonText: 'Confirm',
                   alertContent: ElegantBodyWidget(
                     titleText: const Text(

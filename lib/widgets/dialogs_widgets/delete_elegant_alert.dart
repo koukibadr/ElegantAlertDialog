@@ -25,7 +25,8 @@ class DeleteElegantAlert extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: errorColor,
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(elegantAlertDeleteType.borderRadius),
+                    topLeft:
+                        Radius.circular(elegantAlertDeleteType.borderRadius),
                   ),
                 ),
               ),

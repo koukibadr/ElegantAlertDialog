@@ -24,6 +24,7 @@ class ElegantAlertDialog extends StatefulWidget {
     this.height = 150,
     this.borderRadius = 10,
     this.borderSize = 1,
+    this.withAnimation = true,
   });
 
   ElegantAlertDialog.multiActions({
@@ -49,6 +50,7 @@ class ElegantAlertDialog extends StatefulWidget {
     this.height = 150,
     this.borderRadius = 10,
     this.borderSize = 1,
+    this.withAnimation = true,
   }) {
     elegantAlertType = ElegantAlertMultiActionsType(
       alertContent,
@@ -85,6 +87,7 @@ class ElegantAlertDialog extends StatefulWidget {
     this.height = 150,
     this.borderRadius = 10,
     this.borderSize = 1,
+    this.withAnimation = true,
   }) {
     elegantAlertType = ElegantAlertPermissionType(
       alertContent,
@@ -118,6 +121,7 @@ class ElegantAlertDialog extends StatefulWidget {
     this.height = 150,
     this.borderRadius = 10,
     this.borderSize = 1,
+    this.withAnimation = true,
   }) {
     elegantAlertType = ElegantAlertDeleteType(
       alertContent,
@@ -148,6 +152,7 @@ class ElegantAlertDialog extends StatefulWidget {
     this.height = 150,
     this.borderRadius = 10,
     this.borderSize = 1,
+    this.withAnimation = true,
   }) {
     elegantAlertType = ElegantAlertInfoType(
       alertContent,
@@ -169,6 +174,8 @@ class ElegantAlertDialog extends StatefulWidget {
   final double height;
   final double borderRadius;
   final double borderSize;
+
+  final bool withAnimation;
 
   late Color? borderColor;
   late List<Widget> actions;
@@ -212,36 +219,36 @@ class _ElegantAlertDialogState<T> extends State<ElegantAlertDialog>
 
   @override
   void initState() {
-    _animationController = AnimationController(
-      vsync: this,
-      duration: widget.animationDuration,
-    )..addListener(() {
-        setState(() {});
-      });
-    if (widget.animationType == AnimationTypes.scaleAnimation) {
-      animationTween = Tween<double>(
-        begin: 0.0,
-        end: 1.0,
+    if (widget.withAnimation) {
+      _animationController = AnimationController(
+        vsync: this,
+        duration: widget.animationDuration,
+      )..addListener(() {
+          setState(() {});
+        });
+      if (widget.animationType == AnimationTypes.scaleAnimation) {
+        animationTween = Tween<double>(
+          begin: 0.0,
+          end: 1.0,
+        );
+      } else {
+        animationTween = Tween<Offset>(
+          begin: const Offset(2, 0),
+          end: const Offset(0, 0),
+        );
+      }
+      offsetAnimation = animationTween.animate(
+        CurvedAnimation(
+          parent: _animationController,
+          curve: Curves.fastEaseInToSlowEaseOut,
+        ),
       );
-    } else {
-      animationTween = Tween<Offset>(
-        begin: const Offset(2, 0),
-        end: const Offset(0, 0),
-      );
+      WidgetsBinding.instance.addPostFrameCallback((_) => animate());
     }
-    offsetAnimation = animationTween.animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: Curves.fastEaseInToSlowEaseOut,
-      ),
-    );
-
     if (widget.elegantAlertType != null) {
       widget.borderColor = widget.elegantAlertType?.primaryColor;
     }
-
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => animate());
   }
 
   void animate() {
@@ -250,14 +257,17 @@ class _ElegantAlertDialogState<T> extends State<ElegantAlertDialog>
 
   @override
   void dispose() {
-    _animationController.dispose();
-
+    if (widget.withAnimation) {
+      _animationController.dispose();
+    }
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (widget.animationType == AnimationTypes.scaleAnimation) {
+    if (!widget.withAnimation) {
+      return renderElegantAlert();
+    } else if (widget.animationType == AnimationTypes.scaleAnimation) {
       return Transform.scale(
         scale: offsetAnimation.value,
         child: renderElegantAlert(),
