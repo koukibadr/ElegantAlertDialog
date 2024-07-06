@@ -1,3 +1,7 @@
-## 0.0.1
+## [0.0.1] 06/07/2024
 
-* TODO: Describe initial release.
+* Implement custom alert dialog popup.
+* Implement predefined dialogs: permission, multi-actions, caution and info.
+* Support slide animation with custom duration and curve.
+* Support scale animation with custom duration and curve.
+* Customizable appearance: background, border, radius, shadow.

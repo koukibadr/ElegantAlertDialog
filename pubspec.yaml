@@ -1,10 +1,11 @@
 name: elegant_alert_dialog
-description: A new Flutter package project.
+description: Dislpay a predefined alerts or custom alerts with support of multi-actions
 version: 0.0.1
-homepage: test
+homepage: 'https://github.com/koukibadr/ElegantAlertDialog'
 environment:
   sdk: '>=3.4.1 <4.0.0'
-  flutter: '>=1.17.0'
+funding:
+- 'https://www.buymeacoffee.com/koukibadr'
 dependencies:
   flutter:
     sdk: flutter
