@@ -33,7 +33,7 @@ class InfoElegantAlert extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
-            elegantAlertInfoType.alertContent.titleText,
+            elegantAlertInfoType.alertContent.titleWidget,
           ],
         ),
         Expanded(
@@ -43,7 +43,7 @@ class InfoElegantAlert extends StatelessWidget {
             ),
             child: Column(
               children: [
-                elegantAlertInfoType.alertContent.bodyText,
+                elegantAlertInfoType.alertContent.bodyWidget,
                 Expanded(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,

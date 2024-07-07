@@ -1,15 +1,17 @@
 # Elegant Alert
+
 ### An elegant alert easy to display to your users with your customizations.
+
 <hr>
 
 ## Features
 
-- Display alerts to users with an easy setup
-- Create customizable popups with multi actions
-- built-in themes: Permission, multi-actions, caution and info
-- Displayed with or without animations
-- Support scale and slide transitions
-- Customizable appearence
+* Display alerts to users with an easy setup
+* Create customizable popups with multi actions
+* built-in themes: Permission, multi-actions, caution and info
+* Displayed with or without animations
+* Support scale and slide transitions
+* Customizable appearence
 
 ## Getting Started
 
@@ -24,7 +26,7 @@ dependencies:
 
 `
 
-````dart
+```dart
   ///Alert content widget, it's required in all constructors
   ///[ElegantBodyWidget] contain two attributes [title] and [description] of type widgets
   ///both are required
@@ -130,58 +132,155 @@ dependencies:
   late Color? cancelButtonColor;
 `
 
-````
+```
 
 ## Examples
 
-- **Permission alert**
+* **Permission alert**
 
 ```dart
-//TODO add code snippet here
+ElegantAlertDialog.permission(
+  height: 200,
+  alertContent: ElegantBodyWidget(
+    titleWidget: const Row(
+      children: [
+        Icon(Icons.camera),
+        SizedBox(width: 5),
+        Text(
+          'Access Camera',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+    ],
+  ),
+  bodyWidget: const Text(
+    "Allow App to take pictures and videos. Capture memorable moments and share them with friends!",
+    ),
+  ),
+  confirmButtonText: 'Allow',
+  cancelButtonText: 'Deny',
+).show(context);
 ```
-<img src=""/>
 
-- **Multi actions alert**
-
+* **Multi actions alert**
 
 ```dart
-//TODO add code snippet here
+ElegantAlertDialog.multiActions(
+  height: 180,
+  alertContent: ElegantBodyWidget(
+    titleWidget: const Text(
+      "Access to contact",
+      style: TextStyle(fontWeight: FontWeight.bold),
+    ),
+    bodyWidget: const Text(
+      "Allow App to access your contact, this will let app synchronize all your friends with your contact list.",
+    ),
+  ),
+  confirmButtonText: 'Allow',
+  secondButtonText: 'Deny',
+  cancelButtonText: 'Learn More',
+  animationType: AnimationTypes.slideAnimation,
+  backgroundColor: Colors.white,
+).show(context);
 ```
-<img src=""/>
 
-
-- **Caution alert**
-
+* **Caution alert**
 
 ```dart
-//TODO add code snippet here
+ElegantAlertDialog.caution(
+  confirmButtonText: 'Delete',
+  cancelButtonText: 'Cancel',
+  onConfirmButtonPressed: () {},
+  alertContent: ElegantBodyWidget(
+    titleWidget: const Text(
+      "Are you sure you want to delete?",
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    bodyWidget: const Text.rich(
+      TextSpan(
+        text: "This action cannot be undone",
+        style: TextStyle(
+          color: Colors.red,
+          fontWeight: FontWeight.bold,
+        ),
+        children: [
+          TextSpan(
+            text:
+             " selected data will be permanently deleted from your device.",
+             style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.normal,
+              ))
+            ]),
+          ),
+      ),
+).show(context);
 ```
-<img src=""/>
 
-
-- **Info alert**
-
+* **Info alert**
 
 ```dart
-//TODO add code snippet here
+ElegantAlertDialog.info(
+  height: 200,
+  withAnimation: false,
+  confirmButtonText: 'Confirm',
+  alertContent: ElegantBodyWidget(
+    titleWidget: const Text(
+      "Account updated",
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    bodyWidget: const Text(
+      """We've made some improvements to your account to enhance your experience.
+For more information, please visit our Help Center.""",
+    ),
+  ),
+  animationType: AnimationTypes.slideAnimation,
+).show(context);
 ```
-<img src=""/>
 
-- **Custom alert**
-
+* **Custom alert**
 
 ```dart
-//TODO add code snippet here
+ElegantAlertDialog(
+  borderColor: Colors.brown,
+  borderRadius: 0,
+  backgroundColor: Colors.white.withOpacity(0.8),
+  alertContent: ElegantBodyWidget(
+    titleWidget: const Text(
+      "Your contact list is up to date",
+      style: TextStyle(
+        color: Colors.brown,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    bodyWidget: const Text(
+      "App has been updating all your contact list, now you can use your app with the latest features",
+    ),
+  ),
+  actions: [
+    TextButton(
+      onPressed: () {},
+      child: const Text(
+        'Close',
+        style: TextStyle(
+          color: Colors.grey,
+          ),
+        ),
+      ),
+    ],
+).show(context);
 ```
-<img src=""/>
 
 ## Contribution
 
 You can contribute to the project via [repository link](https://github.com/koukibadr/Elegant-Notification)
 
-- If you **found a bug**, open an issue.
-- If you **have a feature request**, open an issue.
-- If you **want to contribute**, submit a pull request.
+* If you **found a bug**, open an issue.
+* If you **have a feature request**, open an issue.
+* If you **want to contribute**, submit a pull request.
 
 ## Contributors
 

@@ -63,13 +63,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   withAnimation: false,
                   confirmButtonText: 'Confirm',
                   alertContent: ElegantBodyWidget(
-                    titleText: const Text(
+                    titleWidget: const Text(
                       "Account updated",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    bodyText: const Text(
+                    bodyWidget: const Text(
                       """We've made some improvements to your account to enhance your experience.
 For more information, please visit our Help Center.""",
                     ),
@@ -92,13 +92,13 @@ For more information, please visit our Help Center.""",
                   cancelButtonText: 'Cancel',
                   onConfirmButtonPressed: () {},
                   alertContent: ElegantBodyWidget(
-                    titleText: const Text(
+                    titleWidget: const Text(
                       "Are you sure you want to delete?",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    bodyText: const Text.rich(
+                    bodyWidget: const Text.rich(
                       TextSpan(
                           text: "This action cannot be undone",
                           style: TextStyle(
@@ -131,7 +131,7 @@ For more information, please visit our Help Center.""",
                 ElegantAlertDialog.permission(
                   height: 200,
                   alertContent: ElegantBodyWidget(
-                    titleText: const Row(
+                    titleWidget: const Row(
                       children: [
                         Icon(Icons.camera),
                         SizedBox(
@@ -145,7 +145,7 @@ For more information, please visit our Help Center.""",
                         ),
                       ],
                     ),
-                    bodyText: const Text(
+                    bodyWidget: const Text(
                       "Allow App to take pictures and videos. Capture memorable moments and share them with friends!",
                     ),
                   ),
@@ -166,13 +166,13 @@ For more information, please visit our Help Center.""",
                 ElegantAlertDialog.multiActions(
                   height: 180,
                   alertContent: ElegantBodyWidget(
-                    titleText: const Text(
+                    titleWidget: const Text(
                       "Access to contact",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    bodyText: const Text(
+                    bodyWidget: const Text(
                       "Allow App to access your contact, this will let app synchronize all your friends with your contact list.",
                     ),
                   ),
@@ -198,14 +198,14 @@ For more information, please visit our Help Center.""",
                   borderRadius: 0,
                   backgroundColor: Colors.white.withOpacity(0.8),
                   alertContent: ElegantBodyWidget(
-                    titleText: const Text(
+                    titleWidget: const Text(
                       "Your contact list is up to date",
                       style: TextStyle(
                         color: Colors.brown,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    bodyText: const Text(
+                    bodyWidget: const Text(
                       "App has been updating all your contact list, now you can use your app with the latest features",
                     ),
                   ),

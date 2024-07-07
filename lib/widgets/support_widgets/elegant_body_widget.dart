@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ElegantBodyWidget {
-  final Widget titleText;
-  final Widget bodyText;
+  final Widget titleWidget;
+  final Widget bodyWidget;
   ElegantBodyWidget({
-    required this.bodyText,
-    required this.titleText,
+    required this.bodyWidget,
+    required this.titleWidget,
   });
 }

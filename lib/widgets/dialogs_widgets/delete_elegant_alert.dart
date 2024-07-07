@@ -34,7 +34,7 @@ class DeleteElegantAlert extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
-            elegantAlertDeleteType.alertContent.titleText,
+            elegantAlertDeleteType.alertContent.titleWidget,
           ],
         ),
         Expanded(
@@ -44,7 +44,7 @@ class DeleteElegantAlert extends StatelessWidget {
             ),
             child: Column(
               children: [
-                elegantAlertDeleteType.alertContent.bodyText,
+                elegantAlertDeleteType.alertContent.bodyWidget,
                 Expanded(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,

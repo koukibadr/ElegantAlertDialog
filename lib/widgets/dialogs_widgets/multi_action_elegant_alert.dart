@@ -35,7 +35,7 @@ class MultiActionElegantAlert extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
-            elegantNotificationMultiActions.alertContent.titleText,
+            elegantNotificationMultiActions.alertContent.titleWidget,
           ],
         ),
         Expanded(
@@ -45,7 +45,7 @@ class MultiActionElegantAlert extends StatelessWidget {
             ),
             child: Column(
               children: [
-                elegantNotificationMultiActions.alertContent.bodyText,
+                elegantNotificationMultiActions.alertContent.bodyWidget,
                 Expanded(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,

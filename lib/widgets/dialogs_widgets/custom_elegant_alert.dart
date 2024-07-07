@@ -34,7 +34,7 @@ class CustomElegantAlert extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
-            elegantAlertDialog.alertContent.titleText,
+            elegantAlertDialog.alertContent.titleWidget,
           ],
         ),
         Expanded(
@@ -44,7 +44,7 @@ class CustomElegantAlert extends StatelessWidget {
             ),
             child: Column(
               children: [
-                elegantAlertDialog.alertContent.bodyText,
+                elegantAlertDialog.alertContent.bodyWidget,
                 Expanded(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,

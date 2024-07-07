@@ -35,7 +35,7 @@ class PermissonElegantAlert extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
-            elegantAlertPermission.alertContent.titleText,
+            elegantAlertPermission.alertContent.titleWidget,
           ],
         ),
         Expanded(
@@ -45,7 +45,7 @@ class PermissonElegantAlert extends StatelessWidget {
             ),
             child: Column(
               children: [
-                elegantAlertPermission.alertContent.bodyText,
+                elegantAlertPermission.alertContent.bodyWidget,
                 Expanded(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
